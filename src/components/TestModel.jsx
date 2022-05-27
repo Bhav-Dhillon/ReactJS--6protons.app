@@ -27,8 +27,8 @@ export default function TestModel(props)
     })
 
     return (
-        <group {...props} dispose={null}>
-            <group ref={ref} position={[-1.33, 1.66, -5]} scale={0.18} rotation={[0, 0 , 0]}>
+        <group position={[-.33, 1.66, -5]} {...props} dispose={null}>
+            <group ref={ref} scale={0.18} rotation={[0, 0 , 0]}>
                 <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
                 <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
                 <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />

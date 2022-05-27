@@ -1,7 +1,8 @@
 import { useState, Suspense, useRef} from 'react'
 import { Canvas, useFrame, } from '@react-three/fiber'
-import { OrbitControls, Points, PointMaterial, Html} from '@react-three/drei'
+import { OrbitControls, Points, PointMaterial, Html, MeshWobbleMaterial, softShadows} from '@react-three/drei'
 import * as random from "maath/random";
+import { useSpring, a } from "react-spring/three"
 
 // Imported Components
 import Hero from './components/Hero'
@@ -52,15 +53,15 @@ export default function App() {
           {/* <OrbitControls/> */}
 
           <Suspense fallback={null}>
-            <Html scale={.81} rotation={[0, 0, 0]} position={[0, -.33, -1]} transform occlude>
-              <div className='hero--txt--html'>
-                Learn Chemistry by Seeing.
-              </div>
-            </Html>
             <spotLight position={[10, 10, 10] } intensity={1}/>
             <ambientLight intensity={.4} />
             <TestModel flipped={flipped} moved={moved} />
             <Stars clicked={clicked}/>
+            <Html scale={.81} position={[0, -.33, -1]} transform occlude>
+              <div className='hero--txt--html'>
+                Learn Chemistry by Seeing.
+              </div>
+            </Html>
           </Suspense>
         </Canvas>
 
