@@ -15,7 +15,7 @@ export default function TestModel(props)
         // Getting molecule to ring-flip on hove
         // ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, props.flipped ? (Math.PI) : 0 , 0.1)
 
-        ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI /2) : 0 , 0.1)
+        ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.6) : (Math.PI / 2) , 0.1)
 
         ref.current.rotation.z = Math.sin((state.clock.elapsedTime) * 1.5) / 8
 
@@ -28,7 +28,7 @@ export default function TestModel(props)
 
     return (
         <group position={[-.33, 1.66, -5]} {...props} dispose={null}>
-            <group ref={ref} scale={0.18} rotation={[0, 0 , 0]}>
+            <group ref={ref} scale={0.18} rotation={[(Math.PI / 2), 0 , 0]}>
                 <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
                 <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
                 <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />

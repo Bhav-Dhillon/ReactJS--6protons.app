@@ -1,6 +1,6 @@
 import { useState, Suspense, useRef} from 'react'
 import { Canvas, useFrame, } from '@react-three/fiber'
-import { OrbitControls, Points, PointMaterial, Html, MeshWobbleMaterial, softShadows} from '@react-three/drei'
+import { OrbitControls, Points, PointMaterial, Html, MeshWobbleMaterial} from '@react-three/drei'
 import * as random from "maath/random";
 import { useSpring, a } from "react-spring/three"
 
@@ -35,14 +35,14 @@ export default function App() {
 
     return (
       <>
-        {/* {page === 'home' ? <Hero txtAn={txtAn}/> : <LessonSelection />} */}
+        { clicked ? <LessonSelection /> : <Hero />}
 
-        <button className="btn fill-center fill-center--blue" onMouseEnter={rotateModel} onMouseLeave={rotateModel} onClick={() => {
+        <button className="btn fill-center fill-center--blue" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100, border:'1px solid white', color: 'white'} : {marginTop: 0}} onClick={() => {
           // setMoved(true)
           // setTxtAn(true)
           // window.setTimeout(() => setPage('lesson-selection'), 100 )
           setClicked(!clicked)
-        }}>Get Started</button>
+        }}>{clicked ? "Back to Home" : "Get Started"}</button>
 
 
         {/* // 3D Background + Model */}
@@ -57,12 +57,9 @@ export default function App() {
             <ambientLight intensity={.4} />
             <TestModel flipped={flipped} moved={moved} />
             <Stars clicked={clicked}/>
-            <Html scale={.81} position={[0, -.33, -1]} transform occlude>
-              <div className='hero--txt--html'>
-                Learn Chemistry by Seeing.
-              </div>
-            </Html>
           </Suspense>
+
+          {/* <LessonMesh color='#2a60f8' args={[6, 4, .5]} speed={.75}/> */}
         </Canvas>
 
       </>
@@ -70,7 +67,11 @@ export default function App() {
   }
 
   
-  
+{/* <Html scale={.81} position={[0, -.33, -1]} transform occlude>
+  <div className='hero--txt--html'>
+    Learn Chemistry by Seeing.
+  </div>
+</Html> */}
 
 
 
@@ -109,7 +110,7 @@ function Stars(props)
     // Camera zoom-in animation on load: 
     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 1, 0.07)
 
-    // Rotating camera on button coick:
+    // Rotating camera on button click:
     state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.clicked ? (Math.PI) : 0), 0.07)
 
 
@@ -132,10 +133,86 @@ function Stars(props)
 function LessonSelection()
 {
   return (
-    <div className='lessonSelection-wrapper'>
-      <section className='lessonSelection--container'></section>
-      <section className='lessonSelection--container'></section>
-      <section className='lessonSelection--container'></section>
-    </div>
+    <>
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}>
+        <h1 className='lessonSelection--title'>Please select a lesson.</h1>
+      </div>
+      <div className='lessonSelection-wrapper'>
+        <section className='lessonSelection--container'></section>
+        <section className='lessonSelection--container'></section>
+        <section className='lessonSelection--container'></section>
+      </div>
+    </>
   )
+
 }
+
+
+
+
+
+
+const LessonMesh = ({ position, color, speed, args }) =>
+{
+  //ref to target the mesh
+  const mesh = useRef();
+  //Basic expand state
+  const [expand, setExpand] = useState(false);
+  // React spring expand animation
+  const props = useSpring({
+    scale: expand ? [.2, .2, .2] : [.2, .2, .2],
+  });
+
+  return (
+    <>
+      <directionalLight position={[10, 10, -10] } intensity={1}/>
+      <a.mesh
+        rotation={[0, Math.PI, -Math.PI / 2]}
+        position={[0, 0, 3]}
+        ref={mesh}
+        onClick={() => setExpand(!expand)}
+        scale={props.scale}
+        castShadow>
+        <boxBufferGeometry attach='geometry' args={args} />
+        <MeshWobbleMaterial
+          color={color}
+          speed={speed}
+          attach='material'
+          factor={0.3}
+        />
+      </a.mesh>
+      <a.mesh
+        rotation={[0, Math.PI, -Math.PI / 2]}
+        position={[1.5, 0, 3]}
+        ref={mesh}
+        onClick={() => setExpand(!expand)}
+        scale={props.scale}
+        castShadow>
+        <boxBufferGeometry attach='geometry' args={args} />
+        <MeshWobbleMaterial
+          color={color}
+          speed={speed}
+          attach='material'
+          factor={0.3}
+        />
+      </a.mesh>
+      <a.mesh
+        rotation={[0, Math.PI, -Math.PI / 2]}
+        position={[-1.5, 0, 3]}
+        ref={mesh}
+        onClick={() => console.log('clicked')}
+        scale={props.scale}
+        castShadow>
+        <boxBufferGeometry attach='geometry' args={args} />
+        <MeshWobbleMaterial
+          color={color}
+          speed={speed}
+          attach='material'
+          factor={0.3}
+        />
+      </a.mesh>
+    </>
+
+
+  );
+};

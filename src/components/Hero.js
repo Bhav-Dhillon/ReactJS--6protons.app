@@ -11,7 +11,7 @@ export default function Hero(props)
             </div> */}
             {/* <div style={{ position: 'absolute', top: 40, left: 96, fontSize: '20px', fontWeight: 350 }}>6 Protons</div> */}
             <div className='hero--txt' >
-                <h1 style={{ margin: 0, padding: 0, fontSize: '6em', fontWeight: 500, letterSpacing: '-0.05em' }} className={(props.txtAn ? 'hero--txt--animation' : '')}>Learn Chemistry by Seeing.</h1>
+                <h1 style={{ margin: 0, padding: 0, fontSize: '6em', fontWeight: 500, letterSpacing: '-0.05em' }} className={(props.txtAn ? 'hero--txt--animation' : '')}>Learn by Seeing.</h1>
             </div>
         </div>
     )
