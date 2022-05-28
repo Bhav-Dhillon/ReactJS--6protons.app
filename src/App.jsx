@@ -135,6 +135,13 @@ function LessonSelection()
     const card = document.querySelector('.lessonSelection--container')
     const light = document.querySelector('.light')
 
+    const frames = Array.from(document.querySelector('.frame'), (frame) => frame)
+    console.log(frames);
+
+
+    const cards = Array.from()
+    const lights = Array.from()
+
     let { x, y, width, height } = frame.getBoundingClientRect()
 
     function mouseMove(e)
@@ -144,6 +151,8 @@ function LessonSelection()
         const centerX = left - width / 2
         const centerY = top - height / 2
         const d = Math.sqrt(centerX ** 2 + centerY ** 2)
+
+
 
         card.style.boxShadow = `
         ${-centerX / 5}px ${-centerY / 10}px 10px rgba(0, 0, 0, 0.2)`
@@ -192,51 +201,119 @@ function LessonSelection()
 
 function LessonSelectionProtoype()
 {
-  useEffect(() => {
-    const frame = document.querySelector('.frame')
-    const card = document.querySelector('.card')
-    const light = document.querySelector('.light')
+  // const frame = document.querySelector('.frame')
+  // const card = document.querySelector('.card')
+  // const light = document.querySelector('.light')
 
-    let { x, y, width, height } = frame.getBoundingClientRect()
+  // // const frames = Array.from(document.querySelectorAll('.frame'), (frame, i) => frame.)
+  // // console.log(frames);
+
+  // let { x, y, width, height } = frame.getBoundingClientRect()
+
+  // function mouseMove(e)
+  // { 
+  //     const left = e.clientX - x
+  //     const top = e.clientY - y
+  //     const centerX = left - width / 2
+  //     const centerY = top - height / 2
+  //     const d = Math.sqrt(centerX ** 2 + centerY ** 2)
+
+  //     card.style.boxShadow = `
+  //     ${-centerX / 5}px ${-centerY / 10}px 10px rgba(0, 0, 0, 0.2)`
+
+  //     card.style.transform = `
+  //     rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 8}deg)`
+
+  //     light.style.backgroundImage = `
+  //     radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
+  // }
+
+  // useEffect(() => {
+
+
+    // const frames = Array.from(document.querySelectorAll('.frame'), (frame, i) => frame.)
+    // console.log(frames);
+
+    
+
+    // function mouseMove(e)
+    // { 
+    //   const frame = document.querySelector('.frame')
+    //   const card = document.querySelector('.card')
+    //   const light = document.querySelector('.light')
+    //   let { x, y, width, height } = frame.getBoundingClientRect()
+    //   const left = e.clientX - x
+    //   const top = e.clientY - y
+    //   const centerX = left - width / 2
+    //   const centerY = top - height / 2
+    //   const d = Math.sqrt(centerX ** 2 + centerY ** 2)
+
+    //   card.style.boxShadow = `
+    //   ${-centerX / 5}px ${-centerY / 10}px 10px rgba(0, 0, 0, 0.2)`
+
+    //   card.style.transform = `
+    //   rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 8}deg)`
+
+    //   light.style.backgroundImage = `
+    //   radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
+    // }
+
+    // frames.forEach((frame) => 
+    // {
+    //   frame.addEventListener('mouseenter', () =>
+    //     {
+    //       frame.addEventListener('mousemove', mouseMove)
+    //     })
+
+    //   frame.addEventListener('mouseleave', () =>
+    //     {
+    //       frame.removeEventListener('mousemove', mouseMove)
+    //       card.style.boxShadow = ''
+    //       card.style.transform = ''
+    //       light.style.backgroundImage = ''
+    //     })
+    // })
+  // })
+
+
+
+  function Card(props) 
+  {
+    const frame = useRef();
+    const card = useRef(); 
+    const light = useRef();
 
     function mouseMove(e)
     { 
-        const left = e.clientX - x
-        const top = e.clientY - y
-        const centerX = left - width / 2
-        const centerY = top - height / 2
-        const d = Math.sqrt(centerX ** 2 + centerY ** 2)
-
-        card.style.boxShadow = `
-        ${-centerX / 5}px ${-centerY / 10}px 10px rgba(0, 0, 0, 0.2)`
-
-        card.style.transform = `
-        rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 8}deg)`
-
-        light.style.backgroundImage = `
-        radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
+      let { x, y, width, height } = frame.current.getBoundingClientRect()
+      const left = e.clientX - x
+      const top = e.clientY - y
+      const centerX = left - width / 2
+      const centerY = top - height / 2
+      const d = Math.sqrt(centerX ** 2 + centerY ** 2)
+  
+      card.current.style.boxShadow = `
+      ${-centerX / 5}px ${-centerY / 10}px 10px rgba(0, 0, 0, 0.2)`
+  
+      card.current.style.transform = `
+      rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 8}deg)`
+  
+      light.current.style.backgroundImage = `
+      radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
+    }
+  
+    function mouseLeave()
+    {
+      frame.current.removeEventListener('mousemove', mouseMove)
+      card.current.style.boxShadow = ''
+      card.current.style.transform = ''
+      light.current.style.backgroundImage = ''
     }
 
-    frame.addEventListener('mouseenter', () =>
-    {
-        frame.addEventListener('mousemove', mouseMove)
-    })
-
-    frame.addEventListener('mouseleave', () =>
-    {
-        frame.removeEventListener('mousemove', mouseMove)
-        card.style.boxShadow = ''
-        card.style.transform = ''
-        light.style.backgroundImage = ''
-    })
-  }) 
-
-  function Card() 
-  {
     return (
-      <div className="frame">
-        <div className="card">
-          <div className="light"></div>
+      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame}>
+        <div className="card" ref={card}>
+          <div className="light" ref={light}></div>
         </div>
       </div>
     )
@@ -251,9 +328,12 @@ function LessonSelectionProtoype()
       <div className='lessonSelection-wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
-          <Card />
-          <Card />
-          <Card />
+          <Card id={0}/>
+          <Card id={1}/>
+          <Card id={2}/>
+          {/* <Card id={0} mouseMove={mouseMove} mouseLeave={mouseLeave}/>
+          <Card id={1} mouseMove={mouseMove} mouseLeave={mouseLeave}/>
+          <Card id={2} mouseMove={mouseMove} mouseLeave={mouseLeave}/> */}
         </div>
       </div>
     </>
