@@ -138,8 +138,13 @@ function LessonSelection()
         <div className='frame'>
           <section className='lessonSelection--container'></section>
         </div>
-        <section className='lessonSelection--container'></section>
-        <section className='lessonSelection--container'></section>
+        <div className='frame'>
+          <section className='lessonSelection--container'></section>
+        </div>
+        <div className='frame'>
+          <section className='lessonSelection--container'></section>
+        </div>
+
       </div>
     </>
   )
