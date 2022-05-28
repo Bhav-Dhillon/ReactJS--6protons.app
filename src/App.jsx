@@ -111,7 +111,7 @@ function Stars(props)
     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 1, 0.07)
 
     // Rotating camera on button click:
-    state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.clicked ? (Math.PI) : 0), 0.07)
+    state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.clicked ? (Math.PI) : 0), 0.05)
 
 
     // state.camera.lookAt(0,0, (state.camera.position.z - 5))
@@ -135,7 +135,7 @@ function LessonSelection()
   return (
     <>
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}>
-        <h1 className='lessonSelection--title'>Please select a lesson.</h1>
+        <h1 className='lessonSelection--title'>Please choose a lesson.</h1>
       </div>
       <div className='lessonSelection-wrapper'>
         <section className='lessonSelection--container'></section>

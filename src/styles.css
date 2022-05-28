@@ -39,8 +39,8 @@ svg {
   font-size: 1.1rem;
   font-weight: bold;
   position: absolute; 
-  top: 76%; 
-  left: 500px;
+  top: 80%; 
+  left: 600px;
   z-index: 2;
   font-family: Arial, Helvetica, sans-serif;  
   text-transform: uppercase;
@@ -52,7 +52,7 @@ svg {
 
 
 .fill-center {  
-  left: 42.5%;  
+  left: 44%;  
   text-decoration: none;  
   cursor: pointer;  
   border-radius: 8px; 
@@ -94,13 +94,20 @@ svg {
   
 .fill-center--blue:hover::before { 
   box-shadow: rgb(61, 135, 255) 0px 0px 0px 11em inset;
-}  
+} 
 
-.hero--txt
+.hero 
 {
   position: absolute;
-  top: 55%;
+  top: 52.5%;
   left: 28%;
+}
+
+.hero > h1
+{
+  position: relative;
+  /* top: 55%;
+  left: 28%; */
   background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%);
   /* background: linear-gradient(30deg, #c850c0, #ffcc70); */
   -webkit-background-clip: text;
@@ -196,11 +203,29 @@ svg {
   -webkit-text-fill-color: transparent; */
   position: relative; 
   top: 50px;
-  left: 27%;
+  left: 22%;
   margin: 0;
   padding: 0;
   font-size: 4.5em;
   font-weight: 300;
   font-family: Quicksand;
   letter-spacing: 0.05em
+}
+
+.hero--subtitle{
+  position: absolute;
+  line-height: 35px;
+  margin-top: 30px;
+  text-align: center;
+  /* left: 20px; */
+  font-size: 1.2rem;
+  color: white !important;
+}
+
+span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  /* background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }
