@@ -87,11 +87,13 @@ svg {
 
 .fill-center--blue {
   border: 2px solid rgb(61, 135, 255);
+  /* color: blue; */
   color: rgb(61, 135, 255);
 }
 
 .fill-center--blue:hover::before {
-  box-shadow: rgb(61, 135, 255) 0px 0px 0px 11em inset;
+  box-shadow: black 0px 0px 0px 11em inset;
+  /* box-shadow: rgb(61, 135, 255) 0px 0px 0px 11em inset; */
 }
 
 .hero {
@@ -159,13 +161,10 @@ svg {
   height: 450px;
   border: 2px solid white;
   border-radius: 10px;
-  backdrop-filter: blur(1.5px);
-  /* background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%); */
-  /* background-blend-mode: soft-light; */
+  /* backdrop-filter: blur(1.5px); */
   /* background-color: rgba(1, 117, 254, 0.5); */
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-  /* border: 1px solid rgba(1, 117, 254, 0.3); */
   border: 1px solid white;
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.55);
 }
 
 @keyframes lessonSelection--animation {
@@ -194,12 +193,9 @@ svg {
 }
 
 .lessonSelection--title {
-  /* background: linear-gradient(to right, #3272F4 0%, #CC2DD7 30%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
   position: relative;
   top: 50px;
-  left: 22%;
+  left: 25%;
   margin: 0;
   padding: 0;
   font-size: 4.5em;
@@ -225,11 +221,47 @@ span {
   font-weight: 700;
 }
 
-.frame {
+/* .frame {
   transition: transform 200ms;
 }
 .frame:hover {
   transform: scale3d(1.1, 1.1, 1.1);
+} */
+/*# sourceMappingURL=styles.css.map */
+
+.frame {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 300px;
+  height: 450px;
+  transition: transform 200ms;
+  z-index: 2;
+}
+.frame:hover {
+  transform: scale3d(1.05, 1.05, 1.05);
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  background-image: url("https://djjjk9bjm164h.cloudfront.net/background3.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition-duration: 250ms;
+  transition-property: transform, box-shadow;
+  transition-timing-function: ease-out;
+}
+
+.light {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
 }
 
 /*# sourceMappingURL=styles.css.map */

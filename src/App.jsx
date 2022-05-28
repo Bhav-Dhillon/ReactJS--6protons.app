@@ -1,8 +1,9 @@
-import { useState, Suspense, useRef} from 'react'
+import { useState, Suspense, useRef, useEffect} from 'react'
 import { Canvas, useFrame, } from '@react-three/fiber'
 import { OrbitControls, Points, PointMaterial, Html, MeshWobbleMaterial} from '@react-three/drei'
 import * as random from "maath/random";
 import { useSpring, a } from "react-spring/three"
+// import CardAn from './cardAn';
 
 // Imported Components
 import Hero from './components/Hero'
@@ -35,9 +36,9 @@ export default function App() {
 
     return (
       <>
-        { clicked ? <LessonSelection /> : <Hero />}
+        { clicked ? <LessonSelectionProtoype /> : <Hero />}
 
-        <button className="btn fill-center fill-center--blue" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100, border:'1px solid white', color: 'white'} : {marginTop: 0}} onClick={() => {
+        <button className="btn fill-center fill-center--blue" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100, border:'1px solid white'} : {marginTop: 0}} onClick={() => {
           // setMoved(true)
           // setTxtAn(true)
           // window.setTimeout(() => setPage('lesson-selection'), 100 )
@@ -98,7 +99,7 @@ export default function App() {
 function Stars(props)
 {
   const ref = useRef()
-  const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 3.5 }))
+  const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 2.5 }))
 
 
   useFrame((state, delta) =>
@@ -132,7 +133,7 @@ function LessonSelection()
   return (
     <>
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}>
-        <h1 className='lessonSelection--title'>Please choose a lesson.</h1>
+        <h1 className='lessonSelection--title'>Please select a lesson.</h1>
       </div>
       <div className='lessonSelection-wrapper'>
         <div className='frame'>
@@ -151,72 +152,58 @@ function LessonSelection()
 
 }
 
-
-
-
-
-
-const LessonMesh = ({ position, color, speed, args }) =>
+function LessonSelectionProtoype()
 {
-  //ref to target the mesh
-  const mesh = useRef();
-  //Basic expand state
-  const [expand, setExpand] = useState(false);
-  // React spring expand animation
-  const props = useSpring({
-    scale: expand ? [.2, .2, .2] : [.2, .2, .2],
-  });
+  // const ref = useRef();
+  // if (!ref.current) return
+
+  useEffect(() => {
+    const frame = document.querySelector('.frame')
+    const card = document.querySelector('.card')
+    const light = document.querySelector('.light')
+
+    let { x, y, width, height } = frame.getBoundingClientRect()
+
+    function mouseMove(e)
+    { 
+        const left = e.clientX - x
+        const top = e.clientY - y
+        const centerX = left - width / 2
+        const centerY = top - height / 2
+        const d = Math.sqrt(centerX ** 2 + centerY ** 2)
+
+        card.style.boxShadow = `
+        ${-centerX / 5}px ${-centerY / 10}px 10px rgba(0, 0, 0, 0.2)`
+
+        card.style.transform = `
+        rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 8}deg)`
+
+        light.style.backgroundImage = `
+        radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
+    }
+
+    frame.addEventListener('mouseenter', () =>
+    {
+        frame.addEventListener('mousemove', mouseMove)
+    })
+
+    frame.addEventListener('mouseleave', () =>
+    {
+        frame.removeEventListener('mousemove', mouseMove)
+        card.style.boxShadow = ''
+        card.style.transform = ''
+        light.style.backgroundImage = ''
+    })
+
+  }) 
+  
+
 
   return (
-    <>
-      <directionalLight position={[10, 10, -10] } intensity={1}/>
-      <a.mesh
-        rotation={[0, Math.PI, -Math.PI / 2]}
-        position={[0, 0, 3]}
-        ref={mesh}
-        onClick={() => setExpand(!expand)}
-        scale={props.scale}
-        castShadow>
-        <boxBufferGeometry attach='geometry' args={args} />
-        <MeshWobbleMaterial
-          color={color}
-          speed={speed}
-          attach='material'
-          factor={0.3}
-        />
-      </a.mesh>
-      <a.mesh
-        rotation={[0, Math.PI, -Math.PI / 2]}
-        position={[1.5, 0, 3]}
-        ref={mesh}
-        onClick={() => setExpand(!expand)}
-        scale={props.scale}
-        castShadow>
-        <boxBufferGeometry attach='geometry' args={args} />
-        <MeshWobbleMaterial
-          color={color}
-          speed={speed}
-          attach='material'
-          factor={0.3}
-        />
-      </a.mesh>
-      <a.mesh
-        rotation={[0, Math.PI, -Math.PI / 2]}
-        position={[-1.5, 0, 3]}
-        ref={mesh}
-        onClick={() => console.log('clicked')}
-        scale={props.scale}
-        castShadow>
-        <boxBufferGeometry attach='geometry' args={args} />
-        <MeshWobbleMaterial
-          color={color}
-          speed={speed}
-          attach='material'
-          factor={0.3}
-        />
-      </a.mesh>
-    </>
-
-
-  );
-};
+    <div className="frame">
+      <div className="card">
+        <div className="light"></div>
+      </div>
+    </div>
+  )
+}
