@@ -104,10 +104,7 @@ svg {
 
 .hero > h1 {
   position: relative;
-  /* top: 55%;
-  left: 28%; */
   background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%);
-  /* background: linear-gradient(30deg, #c850c0, #ffcc70); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -136,22 +133,7 @@ svg {
     transform: translateX(15em);
   }
 }
-.lessonSelection-wrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  padding: 100px;
-  /* animation-name: lessonSelection--animation;
-  animation-duration: .2s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards; */
-}
+
 
 .lessonSelection--container {
   /* position: absolute;  */
@@ -159,7 +141,6 @@ svg {
   left: 50%; */
   width: 300px;
   height: 450px;
-  border: 2px solid white;
   border-radius: 10px;
   /* backdrop-filter: blur(1.5px); */
   /* background-color: rgba(1, 117, 254, 0.5); */
@@ -192,17 +173,6 @@ svg {
   gap: 5px;
 }
 
-.lessonSelection--title {
-  position: relative;
-  top: 50px;
-  left: 25%;
-  margin: 0;
-  padding: 0;
-  font-size: 4.5em;
-  font-weight: 300;
-  font-family: Quicksand;
-  letter-spacing: 0.05em;
-}
 
 .hero--subtitle {
   width: 80%;
@@ -221,18 +191,44 @@ span {
   font-weight: 700;
 }
 
-/* .frame {
-  transition: transform 200ms;
+
+.lessonSelection-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  padding: 100px;
 }
-.frame:hover {
-  transform: scale3d(1.1, 1.1, 1.1);
-} */
-/*# sourceMappingURL=styles.css.map */
+
+.lessonSelection--title {
+  /* position: relative; */
+  margin: 0;
+  padding: 0;
+  font-size: 4.5em;
+  font-weight: 300;
+  font-family: Quicksand;
+  letter-spacing: 0.05em;
+  height: 100px; 
+  overflow: hidden;
+  display: block;
+}
+
+.card--wrapper
+{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
 .frame {
-  position: absolute;
-  top: 20px;
-  left: 20px;
   width: 300px;
   height: 450px;
   transition: transform 200ms;
@@ -246,15 +242,16 @@ span {
   width: 100%;
   height: 100%;
   border-radius: 9px;
-  background-image: url("https://djjjk9bjm164h.cloudfront.net/background3.jpg");
+  /* background-image: url("https://djjjk9bjm164h.cloudfront.net/background3.jpg");
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   position: relative;
   transition-duration: 250ms;
   transition-property: transform, box-shadow;
   transition-timing-function: ease-out;
+  border: 1px solid white;
 }
 
 .light {
