@@ -126,6 +126,7 @@ svg {
   -ms-transform: translateZ(-25px) rotateX(-90deg);
   -o-transform: translateZ(-25px) rotateX(-90deg);
   transform: translateZ(-25px) rotateX(-90deg);
+  cursor: pointer; 
 }
 
 
@@ -345,7 +346,7 @@ span {
   z-index: 2;
 }
 .frame:hover {
-  transform: scale3d(1.05, 1.05, 1.05);
+  transform: scale3d(1.1, 1.1, 1.1);
 }
 
 .card {
@@ -356,7 +357,7 @@ span {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; */
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 2px rgba(248, 248, 248, 0.689);
   position: relative;
   transition-duration: 250ms;
   transition-property: transform, box-shadow;
