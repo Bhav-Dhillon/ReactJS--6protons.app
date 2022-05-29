@@ -22,7 +22,7 @@ export default function App() {
   const [moved, setMoved] = useState(false);
   const [txtAn, setTxtAn] = useState(false);
 
-  const [clicked, setClicked] = useState(true);
+  const [clicked, setClicked] = useState(false);
 
   // useFrame((state) => {
   //   // state.camera.position.lerp([0, 0, z], )
@@ -38,12 +38,20 @@ export default function App() {
       <>
         { clicked ? <LessonSelectionProtoype /> : <Hero />}
 
-        <button className="btn fill-center fill-center--blue" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100, border:'1px solid white'} : {marginTop: 0}} onClick={() => {
+        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100} : {marginTop: 0}} onClick={() => {
+          setClicked(!clicked)
+        }}>
+          <div><a title={clicked ? "Back to Home" : "Get Started"}></a></div>
+        </div>
+
+
+
+        {/* <button className="btn fill-center fill-center--blue" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100, border:'1px solid white'} : {marginTop: 0}} onClick={() => {
           // setMoved(true)
           // setTxtAn(true)
           // window.setTimeout(() => setPage('lesson-selection'), 100 )
           setClicked(!clicked)
-        }}>{clicked ? "Back to Home" : "Get Started"}</button>
+        }}>{clicked ? "Back to Home" : "Get Started"}</button> */}
 
 
         {/* // 3D Background + Model */}

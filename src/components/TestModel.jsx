@@ -12,15 +12,15 @@ export default function TestModel(props)
     useFrame((state) => {
         // props.flipped ? ref.current.rotation.set((Math.PI / 2) , 0, 0) : ref.current.rotation.set(0 , 0, 0)
 
-        // Getting molecule to ring-flip on hove
+        // Getting molecule to ring-flip on hover
         // ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, props.flipped ? (Math.PI) : 0 , 0.1)
 
         ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.6) : (Math.PI / 2) , 0.1)
 
-        ref.current.rotation.z = Math.sin((state.clock.elapsedTime) * 1.5) / 8
+        ref.current.rotation.z = Math.sin((state.clock.elapsedTime) * 1.5) / 6
 
         // [Deprecated] Getting molecule to fly off screen
-        ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, props.moved ? 10 : -0.08 , 0.075)
+        // ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, props.moved ? 10 : -0.08 , 0.075)
 
 
         // Camera zoom on click:
