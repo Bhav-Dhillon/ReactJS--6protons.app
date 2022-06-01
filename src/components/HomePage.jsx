@@ -40,8 +40,7 @@ export default function HomePage(props)
 }
 
 
-function Stars(props)
-{
+function Stars(props) {
   const ref = useRef()
   const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 2.5 }))
 
@@ -70,8 +69,7 @@ function Stars(props)
   )
 }
 
-function TestosteroneModel(props) 
-{
+function TestosteroneModel(props) {
     const ref = useRef()
     const { nodes, materials } = useGLTF('/testosterone2-transformed.glb')
 
@@ -98,24 +96,16 @@ function TestosteroneModel(props)
     )
 }
 
-function HeroOverlay()
-{
+function HeroOverlay() {
     return (
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}>
-            {/* <div style={{ position: 'absolute', top: 27, left: 44, fontSize: '20px' }}>
-                <img src={Logo} style={{ width: 50, height: "auto" }} />
-            </div> */}
-            <div style={{ position: 'absolute', top: 20, left: 20, fontSize: '20px', fontWeight: 300 }}>6 Protons</div>
-            <div className='hero' >
-                <h1 style={{ margin: 0, padding: 0, fontSize: '6em', fontWeight: 500, letterSpacing: '-0.05em' }}>Learn by Seeing.</h1>
-                <p className='hero--subtitle'>An introduction to the chemistry of the 6th atom in our universe, <span>carbon.</span></p>
-            </div>
-        </div>
-    )
+      <div className='hero' >
+          <h1 className='hero--title'>Learn by Seeing.</h1>
+          <p className='hero--subtitle'>An introduction to the chemistry of the 6th atom in our universe, <span>carbon.</span></p>
+      </div>
+  )
 }
 
-function LessonSelectionOverlay(props)
-{
+function LessonSelectionOverlay(props) {
   function Card(props) 
   {
     const frame = useRef();

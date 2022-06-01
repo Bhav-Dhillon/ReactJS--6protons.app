@@ -204,13 +204,38 @@ svg {
 
 
 
-
-
+/* HERO OVERLAY */
 
 .hero {
   position: absolute;
   top: 52.5%;
   left: 28%;
+  z-index: 2;
+}
+
+.hero--title {
+  margin: 0;
+  padding: 0;
+  font-size: 6em;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.hero--subtitle {
+  width: 80%;
+  position: absolute;
+  left: 50px;
+  line-height: 35px;
+  margin-top: 25px;
+  text-align: center;
+  /* left: 20px; */
+  font-size: 1.2rem;
+  color: white !important;
+}
+
+span {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .hero > h1 {
@@ -229,21 +254,21 @@ svg {
   letter-spacing: -0.05em;
 }
 
-.hero--txt--animation {
-  animation-name: hero--txt--animation;
-  animation-duration: 0.2s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
 
-@keyframes hero--txt--animation {
-  from {
-    transform: translateX(0em);
-  }
-  to {
-    transform: translateX(15em);
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .lessonSelection--container {
@@ -282,24 +307,6 @@ svg {
   justify-content: center;
   align-items: center;
   gap: 5px;
-}
-
-
-.hero--subtitle {
-  width: 80%;
-  position: absolute;
-  left: 50px;
-  line-height: 35px;
-  margin-top: 25px;
-  text-align: center;
-  /* left: 20px; */
-  font-size: 1.2rem;
-  color: white !important;
-}
-
-span {
-  font-size: 1.3rem;
-  font-weight: 700;
 }
 
 
