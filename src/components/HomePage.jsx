@@ -6,15 +6,13 @@ import * as THREE from 'three'
 
 export default function HomePage(props) 
 {
-    // console.log(props.setPage);
+  const [flipped, setFlipped] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
-    const [flipped, setFlipped] = useState(false);
-    const [clicked, setClicked] = useState(false);
-
-    function rotateModel()
-    {
-      setFlipped(!flipped);
-    }
+  function rotateModel()
+  {
+    setFlipped(!flipped);
+  }
 
     return (
     <>
@@ -160,8 +158,6 @@ function LessonSelectionOverlay(props)
     )
   }
 
-    //  console.log(props.setPage);
-  
   return (
     <>
       <div className='lessonSelection-wrapper'>
