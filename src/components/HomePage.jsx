@@ -98,9 +98,11 @@ function TestosteroneModel(props) {
 
 function HeroOverlay() {
     return (
-      <div className='hero' >
-          <h1 className='hero--title'>Learn by Seeing.</h1>
-          <p className='hero--subtitle'>An introduction to the chemistry of the 6th atom in our universe, <span>carbon.</span></p>
+      <div className='hero--wrapper'>
+        <div className='hero' >
+            <h1 className='hero--title'>Learn by Seeing.</h1>
+            <p className='hero--subtitle'>An introduction to the chemistry of the 6th atom in our universe, <span>carbon.</span></p>
+        </div>
       </div>
   )
 }
