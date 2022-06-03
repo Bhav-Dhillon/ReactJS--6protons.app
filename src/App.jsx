@@ -1,6 +1,8 @@
 import { useState} from 'react'
 import HomePage from './components/HomePage'
 import Lesson1 from './components/Lesson1'
+import Lesson2 from './components/Lesson2'
+import Lesson3 from './components/Lesson3'
 
 export default function App() {
 
@@ -22,11 +24,11 @@ export default function App() {
   }
   else if(page === 'lesson2')
   {
-    return (<h1>Lesson 2</h1>)
+    return (<Lesson2 />)
   }
   else if(page === 'lesson3')
   {
-    return (<h1>Lesson 3</h1>)
+    return (<Lesson3 />)
   }
   else return <h1>Not yet</h1>
 }

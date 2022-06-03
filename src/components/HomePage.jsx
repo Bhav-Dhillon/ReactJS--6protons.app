@@ -148,7 +148,7 @@ function LessonSelectionOverlay(props) {
     }
 
     return (
-      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(props.a)}>
+      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(props.id)}>
         <div className="card" ref={card} >
           <div className="light" ref={light}></div>
         </div>
@@ -161,9 +161,9 @@ function LessonSelectionOverlay(props) {
       <div className='lessonSelection-wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
-          <Card a={1} setPage={props.setPage}/>
-          <Card a={2}/>
-          <Card a={3}/>
+          <Card id={1} setPage={props.setPage}/>
+          <Card id={2} setPage={props.setPage}/>
+          <Card id={3} setPage={props.setPage}/>
         </div>
       </div>
     </>
