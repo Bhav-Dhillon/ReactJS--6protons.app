@@ -1,6 +1,7 @@
 import { useState, Suspense, useRef, useEffect} from 'react'
 import { Canvas, useFrame, } from '@react-three/fiber'
 import { Points, PointMaterial, useGLTF } from '@react-three/drei'
+import Stars from './Stars'
 import * as random from "maath/random";
 import * as THREE from 'three'
 
@@ -24,15 +25,15 @@ export default function HomePage(props)
             <div><a title={clicked ? "Back to Home" : "Get Started"}></a></div>
         </div>
 
-
         {/* 3D SCENE */}
         <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 10, fov: 75, position: [0,0,5] }}>
-            <color attach="background" args={["#000000"]} />
+          <color attach="background" args={["#000000"]} />
             <Suspense fallback={null}>
+                <Camera clicked={clicked}/>
                 <spotLight position={[10, 10, 10] } intensity={1}/>
                 <ambientLight intensity={.4} />
                 <TestosteroneModel flipped={flipped}/>
-                <Stars clicked={clicked}/>
+                <Stars />
             </Suspense>
         </Canvas>
     </>
@@ -40,33 +41,38 @@ export default function HomePage(props)
 }
 
 
-function Stars(props) {
-  const ref = useRef()
-  const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 2.5 }))
+// function Stars(props) {
+//   const ref = useRef()
+//   const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 2.5 }))
 
-  useFrame((state, delta) =>
+//   useFrame((state, delta) =>
+//   {
+//     // Rotating Stars:
+//     ref.current.rotation.x -= delta / 10
+//     ref.current.rotation.y -= delta / 15
+
+//     // Camera zoom-in animation on load: 
+//     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 1, 0.07)
+//   })
+
+//   return (
+//     <>
+//       <group rotation={[0, 0, Math.PI / 4]}>
+//         <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
+//           <PointMaterial transparent color="#fff" size={0.005} sizeAttenuation={true} depthWrite={false} />
+//         </Points>
+//       </group>
+//     </>
+//   )
+// }
+
+function Camera(props) {
+  useFrame((state) => 
   {
-    // Rotating Stars:
-    ref.current.rotation.x -= delta / 10
-    ref.current.rotation.y -= delta / 15
-
-    // Camera zoom-in animation on load: 
-    state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 1, 0.07)
-
-    // Rotating camera on button click:
+    // Rotating camera on button click -- NEEDS TO BE MOVED
     state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.clicked ? (Math.PI) : 0), 0.05)
-
   })
-
-  return (
-    <>
-      <group rotation={[0, 0, Math.PI / 4]}>
-        <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-          <PointMaterial transparent color="#fff" size={0.005} sizeAttenuation={true} depthWrite={false} />
-        </Points>
-      </group>
-    </>
-  )
+  return <></>
 }
 
 function TestosteroneModel(props) {
@@ -142,7 +148,7 @@ function LessonSelectionOverlay(props) {
     }
 
     return (
-      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={props.setPage}>
+      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(props.a)}>
         <div className="card" ref={card} >
           <div className="light" ref={light}></div>
         </div>
@@ -155,9 +161,9 @@ function LessonSelectionOverlay(props) {
       <div className='lessonSelection-wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
-          <Card id={0} setPage={props.setPage}/>
-          <Card id={1}/>
-          <Card id={2}/>
+          <Card a={1} setPage={props.setPage}/>
+          <Card a={2}/>
+          <Card a={3}/>
         </div>
       </div>
     </>
