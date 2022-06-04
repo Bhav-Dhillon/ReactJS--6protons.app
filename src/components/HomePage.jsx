@@ -5,6 +5,7 @@ import Stars from './Stars'
 import * as random from "maath/random";
 import * as THREE from 'three'
 
+
 export default function HomePage(props) 
 {
   const [flipped, setFlipped] = useState(false);
@@ -21,7 +22,7 @@ export default function HomePage(props)
         { clicked ? <LessonSelectionOverlay setPage={props.setPage}/> : <HeroOverlay />}
 
         {/* BUTTONS */}
-        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 100} : {marginTop: 0}} onClick={() => {setClicked(!clicked)}}>
+        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 70} : {marginTop: 0}} onClick={() => {setClicked(!clicked)}}>
             <div><a title={clicked ? "Back to Home" : "Get Started"}></a></div>
         </div>
 
@@ -39,32 +40,6 @@ export default function HomePage(props)
     </>
     )
 }
-
-
-// function Stars(props) {
-//   const ref = useRef()
-//   const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 2.5 }))
-
-//   useFrame((state, delta) =>
-//   {
-//     // Rotating Stars:
-//     ref.current.rotation.x -= delta / 10
-//     ref.current.rotation.y -= delta / 15
-
-//     // Camera zoom-in animation on load: 
-//     state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 1, 0.07)
-//   })
-
-//   return (
-//     <>
-//       <group rotation={[0, 0, Math.PI / 4]}>
-//         <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-//           <PointMaterial transparent color="#fff" size={0.005} sizeAttenuation={true} depthWrite={false} />
-//         </Points>
-//       </group>
-//     </>
-//   )
-// }
 
 function Camera(props) {
   useFrame((state) => 
@@ -86,13 +61,10 @@ function TestosteroneModel(props) {
 
         // Getting molecule to ring-flip on hover
         // ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, props.flipped ? (Math.PI) : 0 , 0.1)
-
-        // [Deprecated] Getting molecule to fly off screen
-        // ref.current.position.x = THREE.MathUtils.lerp(ref.current.position.x, props.moved ? 10 : -0.08 , 0.075)
     })
 
     return (
-        <group position={[-.33, 1.66, -5]} {...props} dispose={null}>
+        <group position={[-.5, 1.66, -4.5]} {...props} dispose={null}>
             <group ref={ref} scale={0.18} rotation={[(Math.PI / 2), 0 , 0]}>
                 <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
                 <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
@@ -130,13 +102,13 @@ function LessonSelectionOverlay(props) {
       const d = Math.sqrt(centerX ** 2 + centerY ** 2)
   
       card.current.style.boxShadow = `
-      ${-centerX / 5}px ${-centerY / 10}px 10px rgba(248, 248, 248, 0.689)`
+      ${-centerX / 5}px ${-centerY / 5}px 40px rgba(248, 248, 248, 0.689)`
   
       card.current.style.transform = `
       rotate3d(${-centerY / 5}, ${centerX / 5}, 0, ${d / 12}deg)`
   
-      light.current.style.backgroundImage = `
-      radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
+      // light.current.style.backgroundImage = `
+      // radial-gradient(circle at ${left}px ${top}px, #00000040, #ffffff00, #ffffff99)`
     }
   
     function mouseLeave()
