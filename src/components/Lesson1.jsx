@@ -1,12 +1,76 @@
-import { useState, Suspense} from 'react'
-import { Canvas } from '@react-three/fiber'
+import { useState, Suspense, useRef } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { useGLTF, useAnimations } from '@react-three/drei'
 import Stars from './Stars'
+import * as THREE from 'three'
+
 // import * as THREE from 'three'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 // const gltfLoader = new GLTFLoader();
 
 
+
+// function Model(props) 
+// {
+//     if (props.sectionState === 0) {
+//         return (
+
+//             )
+//     }
+
+//     if (props.sectionState === 1) {
+//         return (
+
+//             )
+//     }
+
+//     if (props.sectionState === 2) {
+//         return (
+
+//             )
+//     }
+
+//     if (props.sectionState === 3) {
+//         return (
+
+//             )
+//     }
+
+// }
+
+function Model0({ ...props }) {
+    const group = useRef()
+    const { nodes, materials } = useGLTF('/Model0-transformed.glb')
+
+    useFrame((state) => 
+    {
+        group.current.rotation.y += .002
+
+        if(state.clock.elapsedTime < 1.4)
+        {
+        }
+
+        // group.current.scale.set(2, 2, 2)
+        // group.current.scale.y = THREE.MathUtils.lerp(group.current.scale.y, group.current.scale.y + .1, 0.1)
+        // group.current.scale.z = THREE.MathUtils.lerp(group.current.scale.z, group.current.scale.z + .1, 0.1)
+
+        // THREE.MathUtils.lerp(group.current.scale.set(1, 1, 1), group.current.scale.set(2, 2, 2), 0.01)
+        // group.current.scale.set(THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.6) : (Math.PI / 2) , 0.1))
+    })
+
+    // console.log(group.current.scale);
+
+    return (
+      <group ref={group} {...props} dispose={null}>
+          <group name="animation-empty" scale={0.008}>
+            <mesh name="carbon-atoms" geometry={nodes['carbon-atoms'].geometry} material={materials.Carbon} position={[1.02, 3.01, 1.45]} scale={0.23} />
+            <mesh name="carbon-bonds" geometry={nodes['carbon-bonds'].geometry} material={materials.Carbon} position={[2.9, 1.01, -1.53]} rotation={[-0.42, 1.23, -2.44]} />
+            <mesh name="soccer-pattern" geometry={nodes['soccer-pattern'].geometry} material={materials.Carbon} position={[0.18, 1.66, 3.07]} scale={0.23} />
+        </group>
+      </group>
+    )
+  }
 
 export default function Lesson1() {
     const [sectionState, setSectionState] = useState(0);
@@ -21,6 +85,8 @@ export default function Lesson1() {
                     <ambientLight intensity={.4} />
                     <Stars />
 
+                    <Model0 />
+
                     {/* <Model sectionState={sectionState}/>
                     <Overlay sectionState={sectionState} /> */}
                 </Suspense>
@@ -28,6 +94,8 @@ export default function Lesson1() {
         </>
     );
     
+
+
 
     // else if (sectionState === 1)
     // {
