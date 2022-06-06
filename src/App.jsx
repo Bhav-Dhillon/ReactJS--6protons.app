@@ -10,7 +10,7 @@ export default function App() {
 
   function handlePage(id)
   {
-    setPage(`lesson${id}`)
+    setPage(`${id}`)
   }
 
   if(page === 'home')
@@ -20,7 +20,7 @@ export default function App() {
 
   else if(page === 'lesson1')
   {
-    return (<Lesson1 />)
+    return (<Lesson1 setPage={handlePage}/>)
   }
   else if(page === 'lesson2')
   {

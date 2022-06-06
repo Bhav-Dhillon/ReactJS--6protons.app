@@ -64,8 +64,8 @@ function TestosteroneModel(props) {
     })
 
     return (
-        <group position={[-.5, 1.66, -4.5]} {...props} dispose={null}>
-            <group ref={ref} scale={0.18} rotation={[(Math.PI / 2), 0 , 0]}>
+        <group position={[-.1, .5, -1]} {...props} dispose={null}>
+            <group ref={ref} scale={0.07} rotation={[(Math.PI / 2), 0 , 0]}>
                 <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
                 <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
                 <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />
@@ -120,7 +120,7 @@ function LessonSelectionOverlay(props) {
     }
 
     return (
-      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(props.id)}>
+      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(`lesson${props.id}`)}>
         <div className="card" ref={card} >
           <div className="light" ref={light}></div>
         </div>
