@@ -4,9 +4,10 @@ import { useGLTF, useAnimations, OrbitControls} from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import home from './home-icon.png'
 
 export default function Lesson1(props) {
-    const [sectionState, setSectionState] = useState(1);
+    const [sectionState, setSectionState] = useState(0);
 
     return (
         <>
@@ -16,7 +17,7 @@ export default function Lesson1(props) {
                 <Suspense fallback={null}>
                     {/* <OrbitControls /> */}
                     <spotLight position={[10, 10, 10] } intensity={.8}/>
-                    <ambientLight intensity={.3} />
+                    <ambientLight intensity={.5} />
                     <Stars />
                     <Model path={`/model${sectionState}.glb`} />
                 </Suspense>
@@ -32,7 +33,6 @@ function Model(props) {
         GLTFLoader,
         props.path
     )
-    console.log(model);
 
     // Loading Animation
     let mixer
@@ -71,14 +71,22 @@ function Model(props) {
 
 function Overlay(props) {
     return (
-        <>
-        <div className='title'>
-            <h1>C<sub>60</sub> - Fullerene</h1>
+        <div className='lesson1--wrapper'>
+            <header className='lesson1--header'>
+                <img src={home} onClick={() => props.setPage('home')}/>
+                <h1>C<sub>60</sub> - Fullerene</h1>
+            </header>
+            <main className='lesson1--main'>
+
+            </main>
+
+            <footer className='lesson1--footer'>
+                <div className="btn2">
+                    <div><a title={"Start Lesson"}></a></div>
+                </div>  
+            </footer>
+
         </div>
-        <div className="btn2" style={{marginTop: 50 }}>
-            <div><a title={"Back to Home"} onClick={() => props.setPage('home')}></a></div>
-        </div>  
-        </>
 
     )
 }
