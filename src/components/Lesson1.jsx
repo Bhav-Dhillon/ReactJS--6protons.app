@@ -4,7 +4,7 @@ import { useGLTF, useAnimations, OrbitControls} from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import home from './home-icon.png'
+
 
 export default function Lesson1(props) {
     const [sectionState, setSectionState] = useState(0);
@@ -73,7 +73,15 @@ function Overlay(props) {
     return (
         <div className='lesson1--wrapper'>
             <header className='lesson1--header'>
-                <img src={home} onClick={() => props.setPage('home')}/>
+                <ul className="icon-list">
+                    <li className="icon-item" onClick={() => props.setPage(`home`)}>
+                        <a href="#" className="icon-link"><i className="fas fa-house"></i></a>
+                    </li>
+                </ul>
+
+
+
+                {/* <img src={home} onClick={() => props.setPage('home')}/> */}
                 <h1>C<sub>60</sub> - Fullerene</h1>
             </header>
             <main className='lesson1--main'>

@@ -33,15 +33,145 @@ svg {
   fill: #ddd;
 }
 
+/* .btn {
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 80%;
+  left: 600px;
+  z-index: 2;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
 
-/* BUTTONS */
+.btn:hover .btn-slide-show-text1 {
+  margin-left: 65px;
+}
+
+.fill-center {
+  left: 44%;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  height: 50px;
+  width: 180px;
+  padding: 0px;
+  outline: none;
+  overflow: hidden;
+  transition: color 0.3s ease-out 0.1s;
+  background: transparent;
+}
+
+.fill-center::before {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  text-align: center;
+  content: "";
+  border-radius: 50%;
+  display: block;
+  width: 20em;
+  height: 20em;
+  line-height: 20em;
+  left: -4.7em;
+  transition: box-shadow 0.25s ease-out 0s;
+  z-index: -1;
+}
+
+.fill-center:hover {
+  color: rgb(255, 255, 255);
+  background: transparent;
+}
+
+.fill-center--blue {
+  border: 2px solid rgb(61, 135, 255);
+  color: rgb(61, 135, 255);
+}
+
+.fill-center--blue:hover::before {
+  box-shadow: black 0px 0px 0px 11em inset;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HERO OVERLAY */
+
+.hero--wrapper {
+  position: absolute; 
+  top: 0 ;
+  left: 0;
+  height: 100%; 
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.hero {
+  position: relative;
+  top: 55%;
+  height: 250px;
+  /* left: 17%; */
+  z-index: 2;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+
+  /* border: 1px solid red; */
+}
+
+.hero--title {
+  margin: 0;
+  padding: 0;
+  font-size: 7.5vw;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #3272F4 0%, #CC2DD7 75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+
+}
+
+.hero--subtitle {
+  width: 90%;
+  line-height: 40px;
+  /* margin-top: 15px; */
+  text-align: center;
+  color: white !important;
+  font-size: 1.5em;
+}
+
+
+.hero--txt--html {
+  background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
 
 .btn {
   font-size: 1.1rem;
   font-weight: bold;
   position: absolute;
-  top: 82%;
-  left: 43.5%;
+  top: 82.5%;
+  left: 42.1%;
   z-index: 2;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
@@ -133,66 +263,6 @@ svg {
 }
 
 
-/* .btn {
-  font-size: 1.1rem;
-  font-weight: bold;
-  position: absolute;
-  top: 80%;
-  left: 600px;
-  z-index: 2;
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-}
-
-.btn:hover .btn-slide-show-text1 {
-  margin-left: 65px;
-}
-
-.fill-center {
-  left: 44%;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 8px;
-  height: 50px;
-  width: 180px;
-  padding: 0px;
-  outline: none;
-  overflow: hidden;
-  transition: color 0.3s ease-out 0.1s;
-  background: transparent;
-}
-
-.fill-center::before {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  margin: auto;
-  text-align: center;
-  content: "";
-  border-radius: 50%;
-  display: block;
-  width: 20em;
-  height: 20em;
-  line-height: 20em;
-  left: -4.7em;
-  transition: box-shadow 0.25s ease-out 0s;
-  z-index: -1;
-}
-
-.fill-center:hover {
-  color: rgb(255, 255, 255);
-  background: transparent;
-}
-
-.fill-center--blue {
-  border: 2px solid rgb(61, 135, 255);
-  color: rgb(61, 135, 255);
-}
-
-.fill-center--blue:hover::before {
-  box-shadow: black 0px 0px 0px 11em inset;
-} */
 
 
 
@@ -207,64 +277,6 @@ svg {
 
 
 
-/* HERO OVERLAY */
-
-.hero--wrapper {
-  position: absolute; 
-  top: 0 ;
-  left: 0;
-  height: 100%; 
-  width: 100%;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-}
-
-.hero {
-  position: relative;
-  top: 52.5%;
-  height: 250px;
-  /* left: 17%; */
-  z-index: 2;
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  font-size: 1rem;
-
-  /* border: 1px solid red; */
-}
-
-.hero--title {
-  margin: 0;
-  padding: 0;
-  font-size: 7.5vw;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  background: linear-gradient(to right, #3272F4 0%, #CC2DD7 75%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-
-}
-
-.hero--subtitle {
-  width: 90%;
-  line-height: 40px;
-  margin-top: 15px;
-  text-align: center;
-  color: white !important;
-  font-size: 1.5em;
-}
-
-
-.hero--txt--html {
-  background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 1em;
-  font-weight: 500;
-  letter-spacing: -0.05em;
-}
 
 
 .lessonSelection--container {
@@ -292,17 +304,20 @@ svg {
   cursor: pointer;
   outline: none;
   border: none;
-  font-size: 8px;
-  font-weight: 300;
-  background: white;
-  color: #f0f0f0;
-  padding: 2px 10px;
-  border-radius: 20px;
-  letter-spacing: 1px;
+  width: 40px;
+  font-size: 4px;
+  font-weight: 700;
+  /* background: #3272F4; */
+  border: .1px solid #3272F4;;
+  background: black;
+  color: #3272F4;
+  padding: 2px;
+  border-radius: 10px;
+  letter-spacing: .7px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  /* gap: 5px; */
 }
 
 
@@ -392,7 +407,9 @@ svg {
   z-index: 2;
   width: 100%; 
   height: 100%;
-  border: solid 1px white;
+
+  padding: 12.5px;
+  /* border: solid 1px white; */
 }
 
 .lesson1--header 
@@ -400,11 +417,12 @@ svg {
   /* position: absolute; */
   z-index: 2;
   width: 100%;
-  border: solid 1px red;
   height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* border: solid 1px red; */
 }
 
 .lesson1--header > img 
@@ -437,7 +455,7 @@ svg {
 {
   width: 100%;
   height: 80%;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   /* z-index: 2; */
 }
 
@@ -445,10 +463,10 @@ svg {
 {
   width: 100%;
   height: 10%;
-  border: 2px solid red;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border: 2px solid red; */
 }
 
 .animation
@@ -550,10 +568,7 @@ svg {
 }
 .btn2 > div > a::after {
   background-color: black;
-  /* background-color: rgb(61, 135, 255); */
   border: 2px solid #f07167;
-  /* border-color: ; */
-  /* color: #000; */
   color: #f07167;
   -webkit-transform: rotateX(90deg) translateZ(25px);
   -moz-transform: rotateX(90deg) translateZ(25px);
@@ -568,4 +583,64 @@ svg {
   -o-transform: translateZ(-25px) rotateX(-90deg);
   transform: translateZ(-25px) rotateX(-90deg);
   cursor: pointer; 
+}
+
+.icon-list {
+  position: absolute;
+  padding: 0;
+  top: 5px;
+  left: 35px;
+}
+
+.icon-item {
+  list-style: none;
+}
+
+.icon-link {  
+  display: inline-flex;
+  font-size: 3rem;  
+  text-decoration: none;  
+  color: white;
+  width: 4.5rem;
+  height: 4.5rem;   
+  transition: .5s linear;
+  position: relative;
+  z-index: 3;
+  margin: auto;
+}
+
+.icon-link:hover {
+  color: #fff;
+}
+
+.icon-link i {
+  margin: auto;  
+  z-index: 2;  
+  transform: scale(.64);
+}
+ 
+
+.icon-link::before {  
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: black;
+  border-radius: 50%;
+  z-index: 1;
+  transform: scale(0);
+  transition: 0.4s cubic-bezier(.95, .32, .37, 1.21);
+}
+  
+.icon-link:hover::before {  
+  transform: scale(.85);
+}
+
+.icon-item:nth-child(1) a:hover:before { 
+  /* background: #f07167; */
+  background: rgb(61, 135, 255); 
 }

@@ -1,9 +1,9 @@
 import { useState, Suspense, useRef, useEffect} from 'react'
 import { Canvas, useFrame, } from '@react-three/fiber'
-import { Points, PointMaterial, useGLTF } from '@react-three/drei'
+import { useGLTF, Html } from '@react-three/drei'
 import Stars from './Stars'
-import * as random from "maath/random";
 import * as THREE from 'three'
+// import * as random from "maath/random";
 
 
 export default function HomePage(props) 
@@ -22,12 +22,12 @@ export default function HomePage(props)
         { clicked ? <LessonSelectionOverlay setPage={props.setPage}/> : <HeroOverlay />}
 
         {/* BUTTONS */}
-        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} style={clicked ? {marginTop: 70} : {marginTop: 0}} onClick={() => {setClicked(!clicked)}}>
+        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} onClick={() => {setClicked(!clicked)}}>
             <div><a title={clicked ? "Back to Home" : "Get Started"}></a></div>
         </div>
 
         {/* 3D SCENE */}
-        <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 10, fov: 75, position: [0,0,5] }}>
+        <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 20, fov: 75, position: [0,0,5] }}>
           <color attach="background" args={["#000000"]} />
             <Suspense fallback={null}>
                 <Camera clicked={clicked}/>
@@ -56,7 +56,7 @@ function TestosteroneModel(props) {
 
     useFrame((state) => {
         ref.current.rotation.z = Math.sin((state.clock.elapsedTime) * 1.5) / 6
-        ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.6) : (Math.PI / 2) , 0.1)
+        ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.5) : Math.PI / 2 , 0.1)
 
 
         // Getting molecule to ring-flip on hover
@@ -64,22 +64,41 @@ function TestosteroneModel(props) {
     })
 
     return (
-        <group position={[-.1, .5, -1]} {...props} dispose={null}>
-            <group ref={ref} scale={0.07} rotation={[(Math.PI / 2), 0 , 0]}>
-                <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
-                <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
-                <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />
-            </group>
+    <group position={[-.1, .55, -1]} {...props} dispose={null}>
+        <Html scale={0.5} rotation={[0, 0, 0]} position={[0, -0.6, 0]} transform occlude style={ props.flipped ? {display: ''} : {display: 'none'}}>
+          <div className="annotation" >
+            Cholesterol
+          </div>
+        </Html>
+        <group ref={ref} scale={0.07} rotation={[Math.PI / 2, 0, 0]}>
+            <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
+            <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
+            <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />
         </group>
+    </group>
+
+        // <group position={[-.1, .5, -1]} {...props} dispose={null}>
+        //   <group ref={ref} scale={0.07} rotation={[0, 0, 0]}>
+        //     <Html scale={8} rotation={[Math.PI / 2, 0, 0]} position={[0, -1, -8.5]} transform occlude>
+        //       <div className="annotation" style={ props.flipped ? {display: ''} : {display: 'none'}}>
+        //         Cholesterol <span style={{ fontSize: '1.5em' }}>🥚</span>
+        //       </div>
+        //     </Html>
+        //       <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
+        //       <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
+        //       <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />
+        //   </group>
+        // </group>
     )
 }
+
 
 function HeroOverlay() {
     return (
       <div className='hero--wrapper'>
         <div className='hero' >
             <h1 className='hero--title'>Learn by Seeing.</h1>
-            <p className='hero--subtitle'>An introduction to the chemistry of the 6th atom in our universe, <span>carbon.</span></p>
+            <p className='hero--subtitle'>A visual introduction to Organic Chemistry.</p>
         </div>
       </div>
   )

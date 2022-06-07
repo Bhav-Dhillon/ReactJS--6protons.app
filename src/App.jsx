@@ -6,7 +6,7 @@ import Lesson3 from './components/Lesson3'
 
 export default function App() {
 
-  const [page, setPage] = useState('lesson1');
+  const [page, setPage] = useState('home');
 
   function handlePage(id)
   {
