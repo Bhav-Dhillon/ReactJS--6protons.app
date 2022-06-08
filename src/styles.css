@@ -304,7 +304,7 @@ svg {
   cursor: pointer;
   outline: none;
   border: none;
-  width: 40px;
+  width: 30px;
   font-size: 4px;
   font-weight: 700;
   /* background: #3272F4; */
@@ -419,7 +419,7 @@ svg {
   width: 100%;
   height: 10%;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 
   /* border: solid 1px red; */
@@ -447,7 +447,8 @@ svg {
   font-size: 65px;
   text-transform: uppercase;
   animation: paragraphAnimation 1.2s ease-out 1 both; 
-  animation-delay: 1.75s;
+  animation-delay: .75s;
+  margin-top: 1%;
   /* width: 50% */
 }
 
@@ -471,8 +472,8 @@ svg {
 
 .animation
 {
-    animation: paragraphAnimation 1.2s ease-out 1 both; 
-    animation-delay: .5s;
+    animation: paragraphAnimation .01s ease-out 1 both; 
+    /* animation-delay: .5s; */
 }
 
 @keyframes paragraphAnimation
@@ -585,62 +586,168 @@ svg {
   cursor: pointer; 
 }
 
-.icon-list {
+
+
+.homeBtn--wrapper {
   position: absolute;
   padding: 0;
-  top: 5px;
-  left: 35px;
+  top: 15px;
+  right: 20px;
 }
 
-.icon-item {
+.homeBtn {
   list-style: none;
 }
 
-.icon-link {  
+.homeBtn--icon {  
   display: inline-flex;
   font-size: 3rem;  
   text-decoration: none;  
-  color: white;
-  width: 4.5rem;
-  height: 4.5rem;   
+  color: black;
+  width: 3.5rem;
+  height: 3.5rem;   
   transition: .5s linear;
   position: relative;
-  z-index: 3;
+  z-index: 1;
   margin: auto;
 }
 
-.icon-link:hover {
-  color: #fff;
+.homeBtn--icon:hover {
+  /* color: #fff; */
 }
 
-.icon-link i {
+.homeBtn--icon i {
   margin: auto;  
-  z-index: 2;  
-  transform: scale(.64);
+  z-index: 20;  
+  transform: scale(.4);
 }
  
 
-.icon-link::before {  
+.homeBtn--icon::before {  
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: black;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
-  z-index: 1;
-  transform: scale(0);
-  transition: 0.4s cubic-bezier(.95, .32, .37, 1.21);
+  /* background: rgb(30, 99, 209); */
+  /* background: #3272F4; */
+  background: #f07167;
+  z-index: 0;
+  transform: scale(.8);
+  transition: 0.36s cubic-bezier(.95, .32, .37, 1.21);
 }
   
-.icon-link:hover::before {  
-  transform: scale(.85);
+.homeBtn--icon:hover::before {  
+  transform: scale(5);
 }
 
-.icon-item:nth-child(1) a:hover:before { 
+.homeBtn--icon:hover::after {  
+  transform: scale(2);
+}
+
+.homeBtn a:hover:before { 
+  animation: homeColorAn 5s ease-out 10 both; 
+
+}
+
+
+.backBtn--wrapper {
+  position: absolute;
+  padding: 0;
+  top: 15px;
+  left: 20px;
+}
+
+.backBtn {
+  list-style: none;
+}
+
+.backBtn--icon {  
+  display: inline-flex;
+  font-size: 3rem;  
+  text-decoration: none;  
+  color: black;
+  width: 3.5rem;
+  height: 3.5rem;   
+  transition: .5s linear;
+  position: relative;
+  z-index: 1;
+  margin: auto;
+}
+
+.backBtn--icon:hover {
+  /* color: #fff; */
+}
+
+.backBtn--icon i {
+  margin: auto;  
+  z-index: 20;  
+  transform: scale(.4);
+}
+ 
+
+.backBtn--icon::before {  
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  /* background: rgb(30, 99, 209); */
+  /* background: #3272F4; */
+  background: #f07167;
+  z-index: 0;
+  transform: scale(.8);
+  transition: 0.36s cubic-bezier(.95, .32, .37, 1.21);
+}
+  
+.backBtn--icon:hover::before {  
+  transform: scale(5);
+}
+
+.backBtn--icon:hover::after {  
+  transform: scale(2);
+}
+
+.backBtn a:hover:before { 
+  animation: homeColorAn 5s ease-out 10 both; 
+  /* background: transparent; */
   /* background: #f07167; */
-  background: rgb(61, 135, 255); 
+  /* background: rgb(61, 135, 255);  */
+  /* background: transparent; */
+  /* box-shadow: 0 0 1px 1px rgb(61, 135, 255)); */
+  /* background: transparent; */
+  /* backdrop-filter: blur(10px); */
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  /* box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25); */
+  /* border: 1px solid rgba(61, 135, 255);  */
+}
+
+
+
+@keyframes homeColorAn
+{
+  0%
+  {
+    background-color: #3272F4;
+    /* border: 1.5px solid #3272F4; */
+  }
+  50%
+  {
+    background-color: #CC2DD7;
+    /* border: 1.5px solid #CC2DD7; */
+  }
+  100%
+  {
+    background-color: #3272F4;
+  }
+
+
 }

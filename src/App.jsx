@@ -7,6 +7,14 @@ import Lesson3 from './components/Lesson3'
 export default function App() {
 
   const [page, setPage] = useState('home');
+  const [cameraRotate, setCameraRotate] = useState(false);
+
+  console.log(cameraRotate);
+
+  function handleClick() 
+  {
+    setCameraRotate(!cameraRotate)
+  }
 
   function handlePage(id)
   {
@@ -15,12 +23,12 @@ export default function App() {
 
   if(page === 'home')
   {
-    return (<HomePage setPage={handlePage}/>);
+    return (<HomePage setPage={handlePage} setCameraRotate={handleClick} cameraRotate={cameraRotate} />);
   }
 
   else if(page === 'lesson1')
   {
-    return (<Lesson1 setPage={handlePage}/>)
+    return (<Lesson1 setPage={handlePage} setCameraRotate={handleClick}/>)
   }
   else if(page === 'lesson2')
   {

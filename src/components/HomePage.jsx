@@ -9,7 +9,6 @@ import * as THREE from 'three'
 export default function HomePage(props) 
 {
   const [flipped, setFlipped] = useState(false);
-  const [clicked, setClicked] = useState(false);
 
   function rotateModel()
   {
@@ -19,18 +18,18 @@ export default function HomePage(props)
     return (
     <>
         {/* OVERLAYS  */}
-        { clicked ? <LessonSelectionOverlay setPage={props.setPage}/> : <HeroOverlay />}
+        { props.cameraRotate ? <LessonSelectionOverlay setPage={props.setPage}/> : <HeroOverlay />}
 
         {/* BUTTONS */}
-        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} onClick={() => {setClicked(!clicked)}}>
-            <div><a title={clicked ? "Back to Home" : "Get Started"}></a></div>
+        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} onClick={() => {props.setCameraRotate()}} style={props.cameraRotate ? {marginTop: 80} : {marginTop: 0}}>
+            <div><a title={props.cameraRotate ? "Back to Home" : "Get Started"}></a></div>
         </div>
 
         {/* 3D SCENE */}
         <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 20, fov: 75, position: [0,0,5] }}>
           <color attach="background" args={["#000000"]} />
             <Suspense fallback={null}>
-                <Camera clicked={clicked}/>
+                <Camera cameraRotate={props.cameraRotate}/>
                 <spotLight position={[10, 10, 10] } intensity={1}/>
                 <ambientLight intensity={.4} />
                 <TestosteroneModel flipped={flipped}/>
@@ -45,7 +44,7 @@ function Camera(props) {
   useFrame((state) => 
   {
     // Rotating camera on button click -- NEEDS TO BE MOVED
-    state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.clicked ? (Math.PI) : 0), 0.05)
+    state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.cameraRotate ? (Math.PI) : 0), 0.05)
   })
   return <></>
 }
@@ -67,7 +66,7 @@ function TestosteroneModel(props) {
     <group position={[-.1, .55, -1]} {...props} dispose={null}>
         <Html scale={0.5} rotation={[0, 0, 0]} position={[0, -0.6, 0]} transform occlude style={ props.flipped ? {display: ''} : {display: 'none'}}>
           <div className="annotation" >
-            Cholesterol
+            Steroid
           </div>
         </Html>
         <group ref={ref} scale={0.07} rotation={[Math.PI / 2, 0, 0]}>
@@ -98,7 +97,7 @@ function HeroOverlay() {
       <div className='hero--wrapper'>
         <div className='hero' >
             <h1 className='hero--title'>Learn by Seeing.</h1>
-            <p className='hero--subtitle'>A visual introduction to Organic Chemistry.</p>
+            <p className='hero--subtitle'>A visual introduction to organic chemistry.</p>
         </div>
       </div>
   )
