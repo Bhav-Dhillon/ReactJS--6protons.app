@@ -129,8 +129,6 @@ svg {
   display: flex; 
   flex-direction: column;
   align-items: center;
-  font-size: 1rem;
-
   /* border: 1px solid red; */
 }
 
@@ -153,7 +151,7 @@ svg {
   /* margin-top: 15px; */
   text-align: center;
   color: white !important;
-  font-size: 1.5em;
+  font-size: 1.7em;
 }
 
 
@@ -304,7 +302,7 @@ svg {
   cursor: pointer;
   outline: none;
   border: none;
-  width: 30px;
+  width: 55px;
   font-size: 4px;
   font-weight: 700;
   /* background: #3272F4; */
@@ -414,7 +412,7 @@ svg {
 
 .lesson1--header 
 {
-  /* position: absolute; */
+  position: absolute;
   z-index: 2;
   width: 100%;
   height: 10%;
@@ -456,18 +454,145 @@ svg {
 {
   width: 100%;
   height: 80%;
-  /* border: 2px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* border: 1px solid blue; */
   /* z-index: 2; */
 }
 
+.lesson1--text 
+{
+  position: absolute;
+  z-index: 3;
+  top: 37%; 
+  left: 8%;
+  width: 40%;
+  line-height: 50px;
+}
+
+
+
+
+
+
+
+.lesson1--text > p 
+{
+  font-size: 1.33rem;
+  text-align: left;
+  line-height: 40px;
+  animation: fadeIn 2s 1 ease-in-out;
+  margin-bottom: 5%;
+}
+
+.lesson1--text2
+{
+  font-size: 1.75rem;
+  text-align: center;
+  width: 60%;
+  line-height: 50px;
+
+  animation: fadeIn 3.25s 1 ease-in-out;
+}
+
+
+.lesson1--text3
+{
+
+  position: absolute; 
+
+  /* right: 400px; */
+  /* margin-top: 45%; */
+  /* animation: fadeIn 3.25s 1 ease-in-out;  */
+}
+
+.lesson1--bottomNav{
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  top: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  padding: 0px 120px 30px 120px;
+}
+
+.lesson1--bottomNav > button 
+{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: transparent;
+  /* background: transparent; */
+  border: 1px solid white;
+}
+
+
+.lesson1--bottomNav > button:hover
+{
+  animation: growGlow .2s ease-in-out;
+  animation-fill-mode: forwards;
+  /* box-shadow: 0 0 10px 10px white; */
+}
+
+@keyframes growGlow {
+  from {
+    box-shadow: 0 0 0px 0px white;
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 10px 4px white;
+    transform: scale(1.2);
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 2s 1 ease-in-out
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+
+
 .lesson1--footer 
 {
+  position: absolute;
+  top: 90%;
+  left: 0;
   width: 100%;
   height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
   /* border: 2px solid red; */
+}
+
+.bottomNav--icons
+{
+  color: white;
 }
 
 .animation
@@ -604,16 +729,12 @@ svg {
   font-size: 3rem;  
   text-decoration: none;  
   color: black;
-  width: 3.5rem;
-  height: 3.5rem;   
+  width: 3.8rem;
+  height: 3.8rem;   
   transition: .5s linear;
   position: relative;
   z-index: 1;
   margin: auto;
-}
-
-.homeBtn--icon:hover {
-  /* color: #fff; */
 }
 
 .homeBtn--icon i {
@@ -630,24 +751,24 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3.8rem;
+  height: 3.8rem;
   border-radius: 50%;
   /* background: rgb(30, 99, 209); */
   /* background: #3272F4; */
   background: #f07167;
   z-index: 0;
   transform: scale(.8);
-  transition: 0.36s cubic-bezier(.95, .32, .37, 1.21);
+  transition: 0.3s cubic-bezier(.95, .32, .37, 1.21);
 }
   
 .homeBtn--icon:hover::before {  
-  transform: scale(5);
+  transform: scale(3.5);
 }
 
-.homeBtn--icon:hover::after {  
-  transform: scale(2);
-}
+/* .homeBtn--icon:hover::after {  
+  transform: scale(20);
+} */
 
 .homeBtn a:hover:before { 
   animation: homeColorAn 5s ease-out 10 both; 
@@ -705,11 +826,11 @@ svg {
   background: #f07167;
   z-index: 0;
   transform: scale(.8);
-  transition: 0.36s cubic-bezier(.95, .32, .37, 1.21);
+  transition: 0.3s cubic-bezier(.95, .32, .37, 1.21);
 }
   
 .backBtn--icon:hover::before {  
-  transform: scale(5);
+  transform: scale(4);
 }
 
 .backBtn--icon:hover::after {  
@@ -748,6 +869,7 @@ svg {
   {
     background-color: #3272F4;
   }
-
-
 }
+
+
+
