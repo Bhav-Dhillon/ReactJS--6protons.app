@@ -75,12 +75,12 @@ export default function Lesson1(props) {
             else if (sectionState === 1) {
                 return (
                     <>
-                        <primitive 
+                        {/* <primitive 
                         object={model.scene}
                         scale={(.12)}
                         position={[.66, 0, -1]}
                         transparent={false}
-                        />
+                        /> */}
                     </>
                 )
             }
@@ -137,8 +137,7 @@ function Text2()
 {
     return (
         <div className='lesson1--text'>
-            <p className='check'> In 1985, chemists were studying how molecules form in outer space by vaporizing graphite rods in an atmosphere of helium gas. </p>
-            <p className='check'>What they discovered was a cage-like molecule composed of 60 carbon atoms, joined together to form a hollow sphere.</p>
+            <p className='check'> In 1985, a highly symmetrical form of pure carbon was discovered</p>
         </div>
 
     )
@@ -181,6 +180,7 @@ function BottomNavBar({sectionState, handleBack, handleNext})
             </div> 
         )
     }
+    
     else if(sectionState > 0)
     {
         return (
@@ -218,42 +218,8 @@ function Text({sectionState})
 
 }
 
-// const [count, setCount] = useState(0);
-    
-// function handleNext() 
-// {
-//     setCount((prevCount) => prevCount + 1)
-// }
-
-// function handleBack() 
-// {
-//     setCount((prevCount) => prevCount - 1)
-// }
-
-// console.log(count);
-// <main className='lesson1--main'>
-
-
-{/* <button onClick={handleBack}>Back</button> */}
-
-// </main>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-{/* <div className='lesson1--wrapper'>
-    <div className='lesson1--main'>
-        <Text sectionState={sectionState} />
-    </div> */}
 
 
