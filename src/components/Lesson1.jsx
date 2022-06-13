@@ -32,6 +32,7 @@ export default function Lesson1(props) {
     {
         function Model(props) {
             // Loading Model
+
             const model = useLoader(
                 GLTFLoader,
                 props.path
@@ -73,14 +74,21 @@ export default function Lesson1(props) {
             }
 
             else if (sectionState === 1) {
+               return (
+               <>
+               </>
+               )
+            }
+
+            else if (sectionState === 2) {
                 return (
                     <>
-                        {/* <primitive 
+                        <primitive 
                         object={model.scene}
                         scale={(.12)}
                         position={[.66, 0, -1]}
                         transparent={false}
-                        /> */}
+                        />
                     </>
                 )
             }
@@ -104,20 +112,20 @@ export default function Lesson1(props) {
     {
         return (
             <>
-                <TopNavBar setPage={props.setPage} setCameraRotate={props.setCameraRotate} />
+                <TopNavBar setPage={props.setPage} setCameraRotate={props.setCameraRotate} sectionState={sectionState}/>
                 <Scene sectionState={sectionState}/>
                 <BottomNavBar sectionState={sectionState} handleBack={handleBack} handleNext={handleNext}/>
             </>
         )
     }
 
-    else if (sectionState === 1)
+    else if (sectionState >= 1)
     {
         return (
             <>
                 <TopNavBar setPage={props.setPage} setCameraRotate={props.setCameraRotate} />
                 <Scene sectionState={sectionState}/>
-                <Text2 />
+                <_Text sectionState={sectionState}/>
                 <BottomNavBar sectionState={sectionState} handleBack={handleBack} handleNext={handleNext}/>
             </>
         )
@@ -133,11 +141,21 @@ export default function Lesson1(props) {
     // }
 }
 
+function Text1()
+{
+    return (
+        <div className='lesson1--text--wrapper'>
+            <p> In 1985, a highly symmetrical form of pure carbon was discovered</p>
+        </div>
+
+    )
+}
+
 function Text2()
 {
     return (
-        <div className='lesson1--text'>
-            <p className='check'> In 1985, a highly symmetrical form of pure carbon was discovered</p>
+        <div className='lesson1--text--wrapper'>
+            <p></p>
         </div>
 
     )
@@ -145,28 +163,57 @@ function Text2()
 
 
 function TopNavBar(props) {
-    return (
-        <header className='lesson1--header'>
-            <ul className="homeBtn--wrapper">
-                <li className="homeBtn" onClick={() => 
-                {
-                    props.setPage(`home`)
-                    // props.setCameraRotate()
-                }}>
-                    <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
-                </li>
-            </ul>
-
-            {/* <ul className="backBtn--wrapper">
-                <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
-                    <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
-                </li>
-            </ul> */}
-
-            <h1>C<sub>60</sub> - Fullerene</h1>
-        </header>
-    )
+    
+        return (
+            <header className='lesson1--header'>
+                <ul className="homeBtn--wrapper">
+                    <li className="homeBtn" onClick={() => 
+                    {
+                        props.setPage(`home`)
+                        // props.setCameraRotate()
+                    }}>
+                        <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
+                    </li>
+                </ul>
+    
+                {/* <ul className="backBtn--wrapper">
+                    <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
+                        <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
+                    </li>
+                </ul> */}
+    
+                {props.sectionState < 1 ? <h1>C<sub>60</sub> - Fullerene</h1> : null}
+            </header>
+        )
+    
 }
+
+    // // RE-FACTOR to DRY
+    // else if(sectionState >= 1)
+    // {
+    //     return (
+    //         <header className='lesson1--header'>
+    //             <ul className="homeBtn--wrapper">
+    //                 <li className="homeBtn" onClick={() => 
+    //                 {
+    //                     props.setPage(`home`)
+    //                     // props.setCameraRotate()
+    //                 }}>
+    //                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
+    //                 </li>
+    //             </ul>
+    
+    //             {/* <ul className="backBtn--wrapper">
+    //                 <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
+    //                     <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
+    //                 </li>
+    //             </ul> */}
+    
+    //             <h1>C<sub>60</sub> - Fullerene</h1>
+    //         </header>
+    //     )
+
+    // }
 
 function BottomNavBar({sectionState, handleBack, handleNext})
 {
@@ -195,29 +242,57 @@ function BottomNavBar({sectionState, handleBack, handleNext})
 
 
 
-function Text({sectionState})
+function _Text({sectionState})
 {
-    if(sectionState === 0)
-    {
-        return (
-            <p className='lesson1--text'> In 1985, a highly symmetrical form of pure carbon was discovered.</p>
-        )
-    }
     if(sectionState === 1)
     {
         return (
-            <p className='lesson1--text2'>Chemists were studying how molecules form in outer space when they began vaporizing graphite rods in an atmosphere of helium gas.</p>
+            <div className='lesson1--text--wrapper'>
+                <p>In 1985, chemists were studying how molecules form in outer space when they began vaporizing graphite rods in an atmosphere of He<sub>2</sub> gas...</p>
+            </div>
         )
     }
-    if(sectionState === 2)
+
+    else if(sectionState === 2)
     {
         return (
-            <p className='lesson1--text3'>The result: a cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere.</p>
+            <div className='lesson1--text--wrapper2'>
+                <p>The result? Novel cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere. The largest and most symmetrical form of pure carbon ever discovered.</p>
+                <p>This molecule would go on to be named Buckminsterfullerene. Often shortened to Fullerene, and nicknamed "Buckyball"</p>
+            </div>
         )
     }
 
 }
 
+function Text({sectionState})
+{
+    if(sectionState === 1)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>In 1985, the largest and most symmetrical form of pure carbon was discovered.</p> 
+            </div>
+        )
+    }
+    else if(sectionState === 2)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>Chemists were studying how molecules form in outer space when they began vaporizing graphite rods in an atmosphere of He<sub>2</sub> gas..</p>
+            </div>
+        )
+    }
+    else if(sectionState === 3)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>The result? Novel cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere.</p>
+            </div>
+        )
+    }
+
+} 
 
 
 

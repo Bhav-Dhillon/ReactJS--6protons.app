@@ -65,7 +65,7 @@ function TestosteroneModel(props) {
     return (
     <group position={[-.1, .55, -1]} {...props} dispose={null}>
         <Html scale={0.5} rotation={[0, 0, 0]} position={[0, -0.6, 0]} transform occlude style={ props.flipped ? {display: ''} : {display: 'none'}}>
-          <div className="annotation" >
+          <div className="annotation">
             Steroid Hormone
           </div>
         </Html>
