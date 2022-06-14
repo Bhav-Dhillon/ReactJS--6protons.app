@@ -1,12 +1,10 @@
 import { useState, Suspense, useRef } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { useGLTF, useAnimations, OrbitControls} from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-
-
 
 export default function Lesson1(props) {
     const [sectionState, setSectionState] = useState(0);
@@ -141,27 +139,6 @@ export default function Lesson1(props) {
     // }
 }
 
-function Text1()
-{
-    return (
-        <div className='lesson1--text--wrapper'>
-            <p> In 1985, a highly symmetrical form of pure carbon was discovered</p>
-        </div>
-
-    )
-}
-
-function Text2()
-{
-    return (
-        <div className='lesson1--text--wrapper'>
-            <p></p>
-        </div>
-
-    )
-}
-
-
 function TopNavBar(props) {
     
         return (
@@ -170,50 +147,43 @@ function TopNavBar(props) {
                     <li className="homeBtn" onClick={() => 
                     {
                         props.setPage(`home`)
-                        // props.setCameraRotate()
+                        props.setCameraRotate()
                     }}>
                         <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
                     </li>
                 </ul>
-    
-                {/* <ul className="backBtn--wrapper">
-                    <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
-                        <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
-                    </li>
-                </ul> */}
-    
                 {props.sectionState < 1 ? <h1>C<sub>60</sub> - Fullerene</h1> : null}
             </header>
         )
     
 }
 
-    // // RE-FACTOR to DRY
-    // else if(sectionState >= 1)
-    // {
-    //     return (
-    //         <header className='lesson1--header'>
-    //             <ul className="homeBtn--wrapper">
-    //                 <li className="homeBtn" onClick={() => 
-    //                 {
-    //                     props.setPage(`home`)
-    //                     // props.setCameraRotate()
-    //                 }}>
-    //                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
-    //                 </li>
-    //             </ul>
-    
-    //             {/* <ul className="backBtn--wrapper">
-    //                 <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
-    //                     <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
-    //                 </li>
-    //             </ul> */}
-    
-    //             <h1>C<sub>60</sub> - Fullerene</h1>
-    //         </header>
-    //     )
+// // RE-FACTOR to DRY
+// else if(sectionState >= 1)
+// {
+//     return (
+//         <header className='lesson1--header'>
+//             <ul className="homeBtn--wrapper">
+//                 <li className="homeBtn" onClick={() => 
+//                 {
+//                     props.setPage(`home`)
+//                     // props.setCameraRotate()
+//                 }}>
+//                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
+//                 </li>
+//             </ul>
 
-    // }
+//             {/* <ul className="backBtn--wrapper">
+//                 <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
+//                     <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
+//                 </li>
+//             </ul> */}
+
+//             <h1>C<sub>60</sub> - Fullerene</h1>
+//         </header>
+//     )
+
+// }
 
 function BottomNavBar({sectionState, handleBack, handleNext})
 {
@@ -240,8 +210,6 @@ function BottomNavBar({sectionState, handleBack, handleNext})
 
 }
 
-
-
 function _Text({sectionState})
 {
     if(sectionState === 1)
@@ -265,7 +233,7 @@ function _Text({sectionState})
 
 }
 
-function Text({sectionState})
+function TextReWord({sectionState})
 {
     if(sectionState === 1)
     {
@@ -293,8 +261,3 @@ function Text({sectionState})
     }
 
 } 
-
-
-
-
-
