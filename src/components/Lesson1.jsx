@@ -1,16 +1,20 @@
 import { useState, Suspense, useRef } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+import { OrbitControls } from '@react-three/drei'
+
+/* 
+TODO
+    - Refactor Top Nav Bar up to App.jsx since we will be using it with every lesson
+    - Find a way to procedurally generate text overlay   
+    - Use Draco compression for models 
+*/
 
 export default function Lesson1(props) {
     const [sectionState, setSectionState] = useState(0);
-
-
-    console.log(sectionState);
 
     function handleNext() 
     {
@@ -26,17 +30,15 @@ export default function Lesson1(props) {
         })
     }
 
-    function Scene()
-    {
+    function Scene() {
         function Model(props) {
-            // Loading Model
-
+            // Model
             const model = useLoader(
                 GLTFLoader,
                 props.path
             )
         
-            // Loading Animation
+            // Animation
             let mixer
             if (model.animations.length) {
                 mixer = new THREE.AnimationMixer(model.scene);
@@ -51,13 +53,17 @@ export default function Lesson1(props) {
                 mixer?.update(delta)
             })
             
-            // model.scene.traverse(child => {
-            //     if (child.isMesh) {
-            //         child.material.opacity = 1; 
-            //         child.material.transparent = true;
-            //         // child.material.side = THREE.FrontSide
-            //     }
-            // })
+            /* 
+            
+            model.scene.traverse(child => {
+                if (child.isMesh) {
+                    child.material.opacity = 1; 
+                    child.material.transparent = true;
+                    // child.material.side = THREE.FrontSide
+                }
+            })
+
+            */ 
         
             if (sectionState === 0) {
                 return (
@@ -90,7 +96,8 @@ export default function Lesson1(props) {
                     </>
                 )
             }
-        }  
+        } 
+
         return (
             <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 10, fov: 45, position: [0, 0, 2] }}>
                 <color attach="background" args={["#000000"]} />
@@ -128,86 +135,6 @@ export default function Lesson1(props) {
             </>
         )
     }
-
-
-    // function MoveCamera()
-    // {
-    //     useFrame((state) => {
-    //         state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (-Math.PI / 2), 0.07)
-    //     })
-    //     return <></>
-    // }
-}
-
-function TopNavBar(props) {
-    
-        return (
-            <header className='lesson1--header'>
-                <ul className="homeBtn--wrapper">
-                    <li className="homeBtn" onClick={() => 
-                    {
-                        props.setPage(`home`)
-                        props.setCameraRotate()
-                    }}>
-                        <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
-                    </li>
-                </ul>
-                {props.sectionState < 1 ? <h1>C<sub>60</sub> - Fullerene</h1> : null}
-            </header>
-        )
-    
-}
-
-// // RE-FACTOR to DRY
-// else if(sectionState >= 1)
-// {
-//     return (
-//         <header className='lesson1--header'>
-//             <ul className="homeBtn--wrapper">
-//                 <li className="homeBtn" onClick={() => 
-//                 {
-//                     props.setPage(`home`)
-//                     // props.setCameraRotate()
-//                 }}>
-//                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
-//                 </li>
-//             </ul>
-
-//             {/* <ul className="backBtn--wrapper">
-//                 <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
-//                     <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
-//                 </li>
-//             </ul> */}
-
-//             <h1>C<sub>60</sub> - Fullerene</h1>
-//         </header>
-//     )
-
-// }
-
-function BottomNavBar({sectionState, handleBack, handleNext})
-{
-    if(sectionState === 0)
-    {
-        return (
-            <div className='lesson1--footer'>
-                <div className="btn2" onClick={handleNext}>
-                    <div><a title={"Start Lesson"}></a></div>
-                </div>  
-            </div> 
-        )
-    }
-    
-    else if(sectionState > 0)
-    {
-        return (
-            <div className='lesson1--bottomNav'>
-                <button onClick={handleBack}><i className="fa-solid fa-angle-left bottomNav--icons"></i></button>
-                <button onClick={handleNext}><i className="fa-solid fa-angle-right bottomNav--icons"></i></button>
-            </div> 
-        )
-    }
-
 }
 
 function _Text({sectionState})
@@ -226,7 +153,7 @@ function _Text({sectionState})
         return (
             <div className='lesson1--text--wrapper2'>
                 <p>The result? Novel cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere. The largest and most symmetrical form of pure carbon ever discovered.</p>
-                <p>This molecule would go on to be named Buckminsterfullerene. Often shortened to Fullerene, and nicknamed "Buckyball"</p>
+                <p>This molecule would go on to be named Buckminsterfullerene. Often shortened to Fullerene and nicknamed "Buckyball"</p>
             </div>
         )
     }
@@ -261,3 +188,74 @@ function TextReWord({sectionState})
     }
 
 } 
+
+function TopNavBar({sectionState, setPage, setCameraRotate}) {
+    
+    return (
+        <header className='lesson1--header'>
+            <ul className="homeBtn--wrapper">
+                <li className="homeBtn" onClick={() => 
+                {
+                    setPage(`home`)
+                    setCameraRotate()
+                }}>
+                    <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
+                </li>
+            </ul>
+            {sectionState < 1 ? <h1>C<sub>60</sub> - Fullerene</h1> : null}
+        </header>
+    )
+
+}
+
+function BottomNavBar({sectionState, handleBack, handleNext})
+{
+if(sectionState === 0)
+{
+    return (
+        <div className='lesson1--footer'>
+            <div className="startLesson1Btn" onClick={handleNext}>
+                <div><a title={"Start Lesson"}></a></div>
+            </div>  
+        </div> 
+    )
+}
+
+else if(sectionState > 0)
+{
+    return (
+        <div className='lesson1--bottomNav'>
+            <button onClick={handleBack}><i className="fa-solid fa-angle-left bottomNav--icons"></i></button>
+            <button onClick={handleNext}><i className="fa-solid fa-angle-right bottomNav--icons"></i></button>
+        </div> 
+    )
+}
+
+}
+
+// // RE-FACTOR to DRY
+// else if(sectionState >= 1)
+// {
+//     return (
+//         <header className='lesson1--header'>
+//             <ul className="homeBtn--wrapper">
+//                 <li className="homeBtn" onClick={() => 
+//                 {
+//                     props.setPage(`home`)
+//                     // props.setCameraRotate()
+//                 }}>
+//                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
+//                 </li>
+//             </ul>
+
+//             {/* <ul className="backBtn--wrapper">
+//                 <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
+//                     <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
+//                 </li>
+//             </ul> */}
+
+//             <h1>C<sub>60</sub> - Fullerene</h1>
+//         </header>
+//     )
+
+// }

@@ -3,7 +3,14 @@ import { Canvas, useFrame, } from '@react-three/fiber'
 import { useGLTF, Html } from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
+import fullerenesImg from '../images/fullerenes.png'
+import diamondsImg from '../images/diamonds.png'
 // import * as random from "maath/random";
+
+/* 
+TODO 
+  - Configure card components with Title, Thumbnail and Description props.
+*/
 
 
 export default function HomePage(props) 
@@ -21,7 +28,7 @@ export default function HomePage(props)
         { props.cameraRotate ? <LessonSelectionOverlay setPage={props.setPage}/> : <HeroOverlay />}
 
         {/* BUTTONS */}
-        <div className="btn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} onClick={() => {props.setCameraRotate()}} style={props.cameraRotate ? {marginTop: 80} : {marginTop: 0}}>
+        <div className="heroBtn" onMouseEnter={rotateModel} onMouseLeave={rotateModel} onClick={() => {props.setCameraRotate()}} style={props.cameraRotate ? {marginTop: 80} : {marginTop: 0}}>
             <div><a title={props.cameraRotate ? "Back to Home" : "Get Started"}></a></div>
         </div>
 
@@ -29,7 +36,7 @@ export default function HomePage(props)
         <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 20, fov: 75, position: [0,0,5] }}>
           <color attach="background" args={["#000000"]} />
             <Suspense fallback={null}>
-                <Camera cameraRotate={props.cameraRotate}/>
+                <RotateCamera cameraRotate={props.cameraRotate}/>
                 <spotLight position={[10, 10, 10] } intensity={1}/>
                 <ambientLight intensity={.4} />
                 <TestosteroneModel flipped={flipped}/>
@@ -40,11 +47,11 @@ export default function HomePage(props)
     )
 }
 
-function Camera(props) {
+function RotateCamera({cameraRotate}) {
   useFrame((state) => 
   {
     // Rotating camera on button click -- NEEDS TO BE MOVED
-    state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (props.cameraRotate ? (Math.PI) : 0), 0.05)
+    state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (cameraRotate ? (Math.PI) : 0), 0.05)
   })
   return <></>
 }
@@ -56,10 +63,6 @@ function TestosteroneModel(props) {
     useFrame((state) => {
         ref.current.rotation.z = Math.sin((state.clock.elapsedTime) * 1.5) / 6
         ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.5) : Math.PI / 2 , 0.1)
-
-
-        // Getting molecule to ring-flip on hover
-        // ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, props.flipped ? (Math.PI) : 0 , 0.1)
     })
 
     return (
@@ -75,22 +78,8 @@ function TestosteroneModel(props) {
             <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />
         </group>
     </group>
-
-        // <group position={[-.1, .5, -1]} {...props} dispose={null}>
-        //   <group ref={ref} scale={0.07} rotation={[0, 0, 0]}>
-        //     <Html scale={8} rotation={[Math.PI / 2, 0, 0]} position={[0, -1, -8.5]} transform occlude>
-        //       <div className="annotation" style={ props.flipped ? {display: ''} : {display: 'none'}}>
-        //         Cholesterol <span style={{ fontSize: '1.5em' }}>🥚</span>
-        //       </div>
-        //     </Html>
-        //       <mesh geometry={nodes.SurfSphere.geometry} material={materials.Oxygen} />
-        //       <mesh geometry={nodes.SurfSphere_1.geometry} material={materials.Carbon} />
-        //       <mesh geometry={nodes.SurfSphere_2.geometry} material={materials.Hydrogen} />
-        //   </group>
-        // </group>
     )
 }
-
 
 function HeroOverlay() {
     return (
@@ -108,7 +97,6 @@ function LessonSelectionOverlay(props) {
   {
     const frame = useRef();
     const card = useRef(); 
-    const light = useRef();
 
     function mouseMove(e)
     { 
@@ -134,13 +122,14 @@ function LessonSelectionOverlay(props) {
       frame.current.removeEventListener('mousemove', mouseMove)
       card.current.style.boxShadow = ''
       card.current.style.transform = ''
-      light.current.style.backgroundImage = ''
     }
 
     return (
       <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(`lesson${props.id}`)}>
-        <div className="card" ref={card} >
-          <div className="light" ref={light}></div>
+        <div className="card" ref={card}>
+          <h1>{props.title}</h1>
+          <img src={props.img}/>
+          <h3>{props.description}</h3>
         </div>
       </div>
     )
@@ -151,9 +140,9 @@ function LessonSelectionOverlay(props) {
       <div className='lessonSelection-wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
-          <Card id={1} setPage={props.setPage}/>
-          <Card id={2} setPage={props.setPage}/>
-          <Card id={3} setPage={props.setPage}/>
+          <Card id={1} setPage={props.setPage} title={"Fullerenes"} img={fullerenesImg} description={"Placeholder for Fullerenes description. Lorem impsum, jbust random filler text here. And a little more."}/>
+          <Card id={2} setPage={props.setPage} title={"Diamonds"} img={diamondsImg} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."}/>
+          <Card id={3} setPage={props.setPage} title={"Nanotubes"} description={"Placeholder for Nanotubes description. Lorem impsum, just random filler text here. And a little more."}/>
         </div>
       </div>
     </>
