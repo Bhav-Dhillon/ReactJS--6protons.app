@@ -4,7 +4,11 @@ import { useGLTF, Html } from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import fullerenesImg from '../images/fullerenes.png'
+import fullerenesImg2 from '../images/fullerenes2.jpeg'
 import diamondsImg from '../images/diamonds.png'
+import diamondsImg2 from '../images/diamonds2.jpeg'
+import diamondsImg3 from '../images/diamonds2.png'
+import nanotubesImg from '../images/nanotubes.jpeg'
 // import * as random from "maath/random";
 
 /* 
@@ -128,7 +132,7 @@ function LessonSelectionOverlay(props) {
       <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(`lesson${props.id}`)}>
         <div className="card" ref={card}>
           <h1>{props.title}</h1>
-          <img src={props.img}/>
+          <img src={props.img} className='card--img'/>
           <h3>{props.description}</h3>
         </div>
       </div>
@@ -140,9 +144,9 @@ function LessonSelectionOverlay(props) {
       <div className='lessonSelection-wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
-          <Card id={1} setPage={props.setPage} title={"Fullerenes"} img={fullerenesImg} description={"Placeholder for Fullerenes description. Lorem impsum, jbust random filler text here. And a little more."}/>
-          <Card id={2} setPage={props.setPage} title={"Diamonds"} img={diamondsImg} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."}/>
-          <Card id={3} setPage={props.setPage} title={"Nanotubes"} description={"Placeholder for Nanotubes description. Lorem impsum, just random filler text here. And a little more."}/>
+          <Card id={1} setPage={props.setPage} title={"Fullerenes"} img={fullerenesImg2} description={"Placeholder for Fullerenes description. Lorem impsum, jbust random filler text here. And a little more."}/>
+          <Card id={2} setPage={props.setPage} title={"Diamonds"} img={diamondsImg2} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."}/>
+          <Card id={3} setPage={props.setPage} title={"Nanotubes"} img={nanotubesImg} description={"Placeholder for Nanotubes description. Lorem impsum, just random filler text here. And a little more."}/>
         </div>
       </div>
     </>
