@@ -791,8 +791,8 @@ svg {
 
 
 .card--img{
-  height: 50% !important; 
-  width: 100%;
+  /* height: 50% !important;  */
+  /* width: 100%; */
 
   /* border: 1px solid red; */
 }

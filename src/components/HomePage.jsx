@@ -8,6 +8,8 @@ import fullerenesImg2 from '../images/fullerenes2.jpeg'
 import diamondsImg from '../images/diamonds.png'
 import diamondsImg2 from '../images/diamonds2.jpeg'
 import diamondsImg3 from '../images/diamonds2.png'
+import diamondsImg4 from '../images/diamonds4.jpg'
+import diamondsImg12 from '../images/diamonds12.png'
 import nanotubesImg from '../images/nanotubes.jpeg'
 // import * as random from "maath/random";
 
@@ -145,7 +147,7 @@ function LessonSelectionOverlay(props) {
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
           <Card id={1} setPage={props.setPage} title={"Fullerenes"} img={fullerenesImg2} description={"Placeholder for Fullerenes description. Lorem impsum, jbust random filler text here. And a little more."}/>
-          <Card id={2} setPage={props.setPage} title={"Diamonds"} img={diamondsImg2} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."}/>
+          <Card id={2} setPage={props.setPage} title={"Diamonds"} img={diamondsImg12} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."}/>
           <Card id={3} setPage={props.setPage} title={"Nanotubes"} img={nanotubesImg} description={"Placeholder for Nanotubes description. Lorem impsum, just random filler text here. And a little more."}/>
         </div>
       </div>
