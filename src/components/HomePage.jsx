@@ -3,14 +3,9 @@ import { Canvas, useFrame, } from '@react-three/fiber'
 import { useGLTF, Html } from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
-import fullerenesImg from '../images/fullerenes.png'
 import fullerenesImg2 from '../images/fullerenes2.jpeg'
-import diamondsImg from '../images/diamonds.png'
-import diamondsImg2 from '../images/diamonds2.jpeg'
-import diamondsImg3 from '../images/diamonds2.png'
-import diamondsImg4 from '../images/diamonds4.jpg'
-import diamondsImg12 from '../images/diamonds12.png'
-import nanotubesImg from '../images/nanotubes.jpeg'
+import diamondsImg12 from '../images/diamonds12-min.png'
+import nanotubesImg from '../images/nano.jpeg'
 // import * as random from "maath/random";
 
 /* 
@@ -101,6 +96,7 @@ function HeroOverlay() {
 function LessonSelectionOverlay(props) {
   function Card(props) 
   {
+    /* 
     const frame = useRef();
     const card = useRef(); 
 
@@ -129,10 +125,13 @@ function LessonSelectionOverlay(props) {
       card.current.style.boxShadow = ''
       card.current.style.transform = ''
     }
+    */
 
     return (
-      <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(`lesson${props.id}`)}>
-        <div className="card" ref={card}>
+      // <div className="frame" onMouseMove={mouseMove} onMouseLeave={mouseLeave} ref={frame} onClick={() => props.setPage(`lesson${props.id}`)}>
+      <div className="frame" onClick={() => props.setPage(`lesson${props.id}`)}>
+        {/* <div className="card" ref={card}> */}
+        <div className="card">
           <h1>{props.title}</h1>
           <img src={props.img} className='card--img'/>
           <h3>{props.description}</h3>
@@ -143,7 +142,7 @@ function LessonSelectionOverlay(props) {
 
   return (
     <>
-      <div className='lessonSelection-wrapper'>
+      <div className='lessonSelection--wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
           <Card id={1} setPage={props.setPage} title={"Fullerenes"} img={fullerenesImg2} description={"Placeholder for Fullerenes description. Lorem impsum, jbust random filler text here. And a little more."}/>

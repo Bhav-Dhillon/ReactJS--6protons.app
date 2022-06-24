@@ -206,7 +206,7 @@ svg {
   /* background: #3272F4; */
   /* gap: 5px; */
 }
-.lessonSelection-wrapper {
+.lessonSelection--wrapper {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -217,6 +217,8 @@ svg {
   top: 0;
   left: 0;
   padding: 100px;
+
+  animation: fadeIn 2s ease-in 1 both; 
   /* justify-content: center; */
 }
 .lessonSelection--title {
