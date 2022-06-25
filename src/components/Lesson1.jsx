@@ -35,7 +35,12 @@ export default function Lesson1(props) {
             // Model
             const model = useLoader(
                 GLTFLoader,
-                props.path
+                props.path,
+                loader => {
+                    const dracoLoader = new DRACOLoader();
+                    dracoLoader.setDecoderPath("myDecoder/gltf/");
+                    loader.setDRACOLoader(dracoLoader);
+                   }
             )
         
             // Animation
@@ -49,22 +54,11 @@ export default function Lesson1(props) {
                     action.play();
                 });
             }
+
             useFrame((state, delta) => {
                 mixer?.update(delta)
             })
             
-            /* 
-            
-            model.scene.traverse(child => {
-                if (child.isMesh) {
-                    child.material.opacity = 1; 
-                    child.material.transparent = true;
-                    // child.material.side = THREE.FrontSide
-                }
-            })
-
-            */ 
-        
             if (sectionState === 0) {
                 return (
                     <>
@@ -85,6 +79,43 @@ export default function Lesson1(props) {
             }
 
             else if (sectionState === 2) {
+                return (
+                    <>
+                        <primitive 
+                        object={model.scene}
+                        scale={(.12)}
+                        position={[.66, 0, -1]}
+                        transparent={false}
+                        />
+                    </>
+                )
+            }
+
+            else if (sectionState === 3) {
+                return (
+                    <>
+                        <primitive 
+                        object={model.scene}
+                        scale={(.12)}
+                        position={[.66, 0, -1]}
+                        transparent={false}
+                        />
+                    </>
+                )
+            }
+            else if (sectionState === 4) {
+                return (
+                    <>
+                        <primitive 
+                        object={model.scene}
+                        scale={(.12)}
+                        position={[.66, 0, -1]}
+                        transparent={false}
+                        />
+                    </>
+                )
+            }
+            else if (sectionState === 5) {
                 return (
                     <>
                         <primitive 
@@ -158,6 +189,37 @@ function _Text({sectionState})
         )
     }
 
+    else if(sectionState === 3)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p>Each molecule has 20 hexagons and 12 pentagons <span>highlighted in red</span> that fit together like the seams of a soccer ball. </p>
+            </div>
+        )
+    }
+
+    else if(sectionState === 4)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p>Because they are essentially hollow cages, they can be manipulated to make materials never before known.</p>
+                <p>For example, when a buckyball is "doped" via inserting potassium or cesium into its cavity, it becomes the best organic superconductor known.</p>
+                <p>These molecules are presently being studied for use in many other applications such as new polymers and catalysts, as well as <span>new drug delivery systems</span>.</p>
+            </div>
+        )
+    }
+
+    else if(sectionState === 5)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p>Scientists have even turned their attention to buckyballs in their quest for a cure for AIDS.</p>
+                <p>An enzyme that is required for HIV to reproduce exhibits a <span>nonpolar pocket</span> in its three-dimensional structure.</p>
+                <p>If this pocket is blocked, the production of virus ceases. Because <span>buckyballs are nonpolar</span>, and have approximately the same diameter as the pocket of the enzyme, they are being considered as possible blockers.</p>
+            </div>
+        )
+    }
+
 }
 
 function TextReWord({sectionState})
@@ -208,28 +270,27 @@ function TopNavBar({sectionState, setPage, setCameraRotate}) {
 
 }
 
-function BottomNavBar({sectionState, handleBack, handleNext})
-{
-if(sectionState === 0)
-{
-    return (
-        <div className='lesson1--footer'>
-            <div className="startLesson1Btn" onClick={handleNext}>
-                <div><a title={"Start Lesson"}></a></div>
-            </div>  
-        </div> 
-    )
-}
+function BottomNavBar({sectionState, handleBack, handleNext}) {
+    if(sectionState === 0)
+    {
+        return (
+            <div className='lesson1--footer'>
+                <div className="startLesson1Btn" onClick={handleNext}>
+                    <div><a title={"Start Lesson"}></a></div>
+                </div>  
+            </div> 
+        )
+    }
 
-else if(sectionState > 0)
-{
-    return (
-        <div className='lesson1--bottomNav'>
-            <button onClick={handleBack}><i className="fa-solid fa-angle-left bottomNav--icons"></i></button>
-            <button onClick={handleNext}><i className="fa-solid fa-angle-right bottomNav--icons"></i></button>
-        </div> 
-    )
-}
+    else if(sectionState > 0)
+    {
+        return (
+            <div className='lesson1--bottomNav'>
+                <button onClick={handleBack}><i className="fa-solid fa-angle-left bottomNav--icons"></i></button>
+                <button onClick={handleNext}><i className="fa-solid fa-angle-right bottomNav--icons"></i></button>
+            </div> 
+        )
+    }
 
 }
 

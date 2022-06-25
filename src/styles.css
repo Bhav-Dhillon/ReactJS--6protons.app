@@ -218,7 +218,7 @@ svg {
   left: 0;
   padding: 100px;
 
-  animation: fadeIn 2s ease-in 1 both; 
+  animation: fadeIn 1.5s ease-in 1 both; 
   /* justify-content: center; */
 }
 .lessonSelection--title {
@@ -411,6 +411,12 @@ svg {
 
   /* border: 1px solid blue; */
 }
+span 
+{
+  color: #f07167;
+  font-family: Quicksand-bold;
+}
+
 .lesson1--text2
 {
   font-size: 1.75rem;
@@ -467,7 +473,7 @@ svg {
 .lesson1--footer 
 {
   position: absolute;
-  top: 90%;
+  top: 88%;
   left: 0;
   width: 100%;
   height: 10%;
