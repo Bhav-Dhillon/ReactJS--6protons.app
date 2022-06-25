@@ -359,23 +359,6 @@ svg {
 
   /* border: 1px solid red; */
 }
-
-
-/* NOT BEING USED? */
-
-/* .lesson1--text--wrapper 
-{
-  position: absolute;
-  z-index: 2;
-  top: 50%; 
-  left: 50%;
-  width: 40%;
-  line-height: 50px;
-  border: 1px solid red;
-} */
-
-
-
 .lesson1--text--wrapper > p 
 {
   width: 90%;
@@ -411,6 +394,16 @@ svg {
 
   /* border: 1px solid blue; */
 }
+
+.lesson1--section5--text 
+{
+  width: 88% !important;
+  font-size: 1.4rem !important;
+  text-align: left;
+  line-height: 45px;
+  animation: fadeIn 2s 1 ease-in-out;
+}
+
 span 
 {
   color: #f07167;
@@ -644,7 +637,7 @@ span
 }
   
 .homeBtn--icon:hover::before {  
-  transform: scale(3.5);
+  transform: scale(.8);
 }
 
 /* .homeBtn--icon:hover::after {  

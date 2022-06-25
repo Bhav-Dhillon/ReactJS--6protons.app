@@ -96,8 +96,9 @@ export default function Lesson1(props) {
                     <>
                         <primitive 
                         object={model.scene}
-                        scale={(.12)}
+                        scale={(.11)}
                         position={[.66, 0, -1]}
+                        rotation={[0, (-Math.PI / 8), 0]}
                         transparent={false}
                         />
                     </>
@@ -108,7 +109,7 @@ export default function Lesson1(props) {
                     <>
                         <primitive 
                         object={model.scene}
-                        scale={(.12)}
+                        scale={(.11)}
                         position={[.66, 0, -1]}
                         transparent={false}
                         />
@@ -120,7 +121,7 @@ export default function Lesson1(props) {
                     <>
                         <primitive 
                         object={model.scene}
-                        scale={(.12)}
+                        scale={(.03)}
                         position={[.66, 0, -1]}
                         transparent={false}
                         />
@@ -174,7 +175,7 @@ function _Text({sectionState})
     {
         return (
             <div className='lesson1--text--wrapper'>
-                <p>In 1985, chemists were studying how molecules form in outer space when they began vaporizing graphite rods in an atmosphere of He<sub>2</sub> gas...</p>
+                <p>In 1985, chemists were studying how molecules form in outer space, when they began vaporizing graphite rods in an atmosphere of He<sub>2</sub> gas...</p>
             </div>
         )
     }
@@ -193,7 +194,10 @@ function _Text({sectionState})
     {
         return (
             <div className='lesson1--text--wrapper2'>
-                <p>Each molecule has 20 hexagons and 12 pentagons <span>highlighted in red</span> that fit together like the seams of a soccer ball. </p>
+                <p>Each buckyball has 20 hexagons and 12 pentagons <span>(highlighted in red)</span> that fit together like the seams of a soccer ball. </p>
+                <p>Fullerenes have extraordinary chemical and physical properties. They are exceedingly rugged and are even capable of surviving the extreme temperatures of outer space.</p>
+                <p>And because they are essentially hollow cages, they can be manipulated to make materials never before known...</p>
+
             </div>
         )
     }
@@ -202,9 +206,9 @@ function _Text({sectionState})
     {
         return (
             <div className='lesson1--text--wrapper2'>
-                <p>Because they are essentially hollow cages, they can be manipulated to make materials never before known.</p>
                 <p>For example, when a buckyball is "doped" via inserting potassium or cesium into its cavity, it becomes the best organic superconductor known.</p>
-                <p>These molecules are presently being studied for use in many other applications such as new polymers and catalysts, as well as <span>new drug delivery systems</span>.</p>
+                <p>These molecules are presently being studied for use in many other applications such as new polymers and catalysts, as well as <span>novel drug delivery systems</span>.</p>
+                <p>Scientists have even turned their attention to buckyballs in their quest for a <span>cure for AIDS...</span></p>
             </div>
         )
     }
@@ -213,9 +217,9 @@ function _Text({sectionState})
     {
         return (
             <div className='lesson1--text--wrapper2'>
-                <p>Scientists have even turned their attention to buckyballs in their quest for a cure for AIDS.</p>
-                <p>An enzyme that is required for HIV to reproduce exhibits a <span>nonpolar pocket</span> in its three-dimensional structure.</p>
-                <p>If this pocket is blocked, the production of virus ceases. Because <span>buckyballs are nonpolar</span>, and have approximately the same diameter as the pocket of the enzyme, they are being considered as possible blockers.</p>
+                <p className='lesson1--section5--text'>How can buckyballs help cure aids? Well an enzyme (HIV-1-Protease) that is required for HIV to reproduce, exhibits a <span>nonpolar pocket</span> in its three-dimensional structure.</p>
+                <p className='lesson1--section5--text'>If this pocket is blocked, the production of virus ceases. Because <span>buckyballs are nonpolar</span>, and have approximately the same diameter as the pocket of the enzyme, they are being considered as possible blockers.</p>
+                <p className='lesson1--section5--text'>On the model to the right, notice how the nonpolar Fullerene is growing to fit the exact diameter of the enzyme's binding pocket.</p>
             </div>
         )
     }
