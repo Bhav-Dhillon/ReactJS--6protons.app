@@ -1,18 +1,20 @@
 import { useState, Suspense, useRef } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { useGLTF, useAnimations, OrbitControls} from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+import { OrbitControls } from '@react-three/drei'
 
-
+/* 
+TODO
+    - Refactor Top Nav Bar up to App.jsx since we will be using it with every lesson
+    - Find a way to procedurally generate text overlay   
+    - Use Draco compression for models 
+*/
 
 export default function Lesson1(props) {
     const [sectionState, setSectionState] = useState(0);
-
-
-    console.log(sectionState);
 
     function handleNext() 
     {
@@ -28,16 +30,20 @@ export default function Lesson1(props) {
         })
     }
 
-    function Scene()
-    {
+    function Scene() {
         function Model(props) {
-            // Loading Model
+            // Model
             const model = useLoader(
                 GLTFLoader,
-                props.path
+                props.path,
+                loader => {
+                    const dracoLoader = new DRACOLoader();
+                    dracoLoader.setDecoderPath("myDecoder/gltf/");
+                    loader.setDRACOLoader(dracoLoader);
+                   }
             )
         
-            // Loading Animation
+            // Animation
             let mixer
             if (model.animations.length) {
                 mixer = new THREE.AnimationMixer(model.scene);
@@ -48,18 +54,11 @@ export default function Lesson1(props) {
                     action.play();
                 });
             }
+
             useFrame((state, delta) => {
                 mixer?.update(delta)
             })
             
-            // model.scene.traverse(child => {
-            //     if (child.isMesh) {
-            //         child.material.opacity = 1; 
-            //         child.material.transparent = true;
-            //         // child.material.side = THREE.FrontSide
-            //     }
-            // })
-        
             if (sectionState === 0) {
                 return (
                     <>
@@ -73,6 +72,13 @@ export default function Lesson1(props) {
             }
 
             else if (sectionState === 1) {
+               return (
+               <>
+               </>
+               )
+            }
+
+            else if (sectionState === 2) {
                 return (
                     <>
                         <primitive 
@@ -84,7 +90,46 @@ export default function Lesson1(props) {
                     </>
                 )
             }
-        }  
+
+            else if (sectionState === 3) {
+                return (
+                    <>
+                        <primitive 
+                        object={model.scene}
+                        scale={(.11)}
+                        position={[.66, 0, -1]}
+                        rotation={[0, (-Math.PI / 8), 0]}
+                        transparent={false}
+                        />
+                    </>
+                )
+            }
+            else if (sectionState === 4) {
+                return (
+                    <>
+                        <primitive 
+                        object={model.scene}
+                        scale={(.11)}
+                        position={[.66, 0, -1]}
+                        transparent={false}
+                        />
+                    </>
+                )
+            }
+            else if (sectionState === 5) {
+                return (
+                    <>
+                        <primitive 
+                        object={model.scene}
+                        scale={(.03)}
+                        position={[.66, 0, -1]}
+                        transparent={false}
+                        />
+                    </>
+                )
+            }
+        } 
+
         return (
             <Canvas gl={{alpha: false}} dpr={[1, 2]} camera={{ near: 0.01, far: 10, fov: 45, position: [0, 0, 2] }}>
                 <color attach="background" args={["#000000"]} />
@@ -104,83 +149,143 @@ export default function Lesson1(props) {
     {
         return (
             <>
-                <TopNavBar setPage={props.setPage} setCameraRotate={props.setCameraRotate} />
+                <TopNavBar setPage={props.setPage} setCameraRotate={props.setCameraRotate} sectionState={sectionState}/>
                 <Scene sectionState={sectionState}/>
                 <BottomNavBar sectionState={sectionState} handleBack={handleBack} handleNext={handleNext}/>
             </>
         )
     }
 
-    else if (sectionState === 1)
+    else if (sectionState >= 1)
     {
         return (
             <>
                 <TopNavBar setPage={props.setPage} setCameraRotate={props.setCameraRotate} />
                 <Scene sectionState={sectionState}/>
-                <Text2 />
+                <_Text sectionState={sectionState}/>
                 <BottomNavBar sectionState={sectionState} handleBack={handleBack} handleNext={handleNext}/>
             </>
         )
     }
-
-
-    // function MoveCamera()
-    // {
-    //     useFrame((state) => {
-    //         state.camera.rotation.y = THREE.MathUtils.lerp(state.camera.rotation.y, (-Math.PI / 2), 0.07)
-    //     })
-    //     return <></>
-    // }
 }
 
-function Text2()
+function _Text({sectionState})
 {
-    return (
-        <div className='lesson1--text'>
-            <p className='check'> In 1985, chemists were studying how molecules form in outer space by vaporizing graphite rods in an atmosphere of helium gas. </p>
-            <p className='check'>What they discovered was a cage-like molecule composed of 60 carbon atoms, joined together to form a hollow sphere.</p>
-        </div>
+    if(sectionState === 1)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>In 1985, chemists were studying how molecules form in outer space, when they began vaporizing graphite rods in an atmosphere of He<sub>2</sub> gas...</p>
+            </div>
+        )
+    }
 
-    )
+    else if(sectionState === 2)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p>The result? Novel cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere. The largest and most symmetrical form of pure carbon ever discovered.</p>
+                <p>This molecule would go on to be named Buckminsterfullerene. Often shortened to Fullerene and nicknamed "Buckyball"</p>
+            </div>
+        )
+    }
+
+    else if(sectionState === 3)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p>Each buckyball has 20 hexagons and 12 pentagons <span>(highlighted in red)</span> that fit together like the seams of a soccer ball. </p>
+                <p>Fullerenes have extraordinary chemical and physical properties. They are exceedingly rugged and are even capable of surviving the extreme temperatures of outer space.</p>
+                <p>And because they are essentially hollow cages, they can be manipulated to make materials never before known...</p>
+
+            </div>
+        )
+    }
+
+    else if(sectionState === 4)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p>For example, when a buckyball is "doped" via inserting potassium or cesium into its cavity, it becomes the best organic superconductor known.</p>
+                <p>These molecules are presently being studied for use in many other applications such as new polymers and catalysts, as well as <span>novel drug delivery systems</span>.</p>
+                <p>Scientists have even turned their attention to buckyballs in their quest for a <span>cure for AIDS...</span></p>
+            </div>
+        )
+    }
+
+    else if(sectionState === 5)
+    {
+        return (
+            <div className='lesson1--text--wrapper2'>
+                <p className='lesson1--section5--text'>How can buckyballs help cure aids? Well an enzyme (HIV-1-Protease) that is required for HIV to reproduce, exhibits a <span>nonpolar pocket</span> in its three-dimensional structure.</p>
+                <p className='lesson1--section5--text'>If this pocket is blocked, the production of virus ceases. Because <span>buckyballs are nonpolar</span>, and have approximately the same diameter as the pocket of the enzyme, they are being considered as possible blockers.</p>
+                <p className='lesson1--section5--text'>On the model to the right, notice how the nonpolar Fullerene is growing to fit the exact diameter of the enzyme's binding pocket.</p>
+            </div>
+        )
+    }
+
 }
 
+function TextReWord({sectionState})
+{
+    if(sectionState === 1)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>In 1985, the largest and most symmetrical form of pure carbon was discovered.</p> 
+            </div>
+        )
+    }
+    else if(sectionState === 2)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>Chemists were studying how molecules form in outer space when they began vaporizing graphite rods in an atmosphere of He<sub>2</sub> gas..</p>
+            </div>
+        )
+    }
+    else if(sectionState === 3)
+    {
+        return (
+            <div className='lesson1--text--wrapper'>
+                <p>The result? Novel cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere.</p>
+            </div>
+        )
+    }
 
-function TopNavBar(props) {
+} 
+
+function TopNavBar({sectionState, setPage, setCameraRotate}) {
+    
     return (
         <header className='lesson1--header'>
             <ul className="homeBtn--wrapper">
                 <li className="homeBtn" onClick={() => 
                 {
-                    props.setPage(`home`)
-                    // props.setCameraRotate()
+                    setPage(`home`)
+                    setCameraRotate()
                 }}>
                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
                 </li>
             </ul>
-
-            {/* <ul className="backBtn--wrapper">
-                <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
-                    <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
-                </li>
-            </ul> */}
-
-            <h1>C<sub>60</sub> - Fullerene</h1>
+            {sectionState < 1 ? <h1>C<sub>60</sub> - Fullerene</h1> : null}
         </header>
     )
+
 }
 
-function BottomNavBar({sectionState, handleBack, handleNext})
-{
+function BottomNavBar({sectionState, handleBack, handleNext}) {
     if(sectionState === 0)
     {
         return (
             <div className='lesson1--footer'>
-                <div className="btn2" onClick={handleNext}>
+                <div className="startLesson1Btn" onClick={handleNext}>
                     <div><a title={"Start Lesson"}></a></div>
                 </div>  
             </div> 
         )
     }
+
     else if(sectionState > 0)
     {
         return (
@@ -193,67 +298,29 @@ function BottomNavBar({sectionState, handleBack, handleNext})
 
 }
 
-
-
-function Text({sectionState})
-{
-    if(sectionState === 0)
-    {
-        return (
-            <p className='lesson1--text'> In 1985, a highly symmetrical form of pure carbon was discovered.</p>
-        )
-    }
-    if(sectionState === 1)
-    {
-        return (
-            <p className='lesson1--text2'>Chemists were studying how molecules form in outer space when they began vaporizing graphite rods in an atmosphere of helium gas.</p>
-        )
-    }
-    if(sectionState === 2)
-    {
-        return (
-            <p className='lesson1--text3'>The result: a cage-like molecules composed of 60 carbon atoms, joined together to form a hollow sphere.</p>
-        )
-    }
-
-}
-
-// const [count, setCount] = useState(0);
-    
-// function handleNext() 
+// // RE-FACTOR to DRY
+// else if(sectionState >= 1)
 // {
-//     setCount((prevCount) => prevCount + 1)
+//     return (
+//         <header className='lesson1--header'>
+//             <ul className="homeBtn--wrapper">
+//                 <li className="homeBtn" onClick={() => 
+//                 {
+//                     props.setPage(`home`)
+//                     // props.setCameraRotate()
+//                 }}>
+//                     <a href="#" className="homeBtn--icon"><i className="fas fa-house"></i></a>
+//                 </li>
+//             </ul>
+
+//             {/* <ul className="backBtn--wrapper">
+//                 <li className="backBtn" onClick={() => { props.setPage(`home`) }}>
+//                     <a href="#" className="backBtn--icon"><i className="fa-solid fa-angle-left"></i></a>
+//                 </li>
+//             </ul> */}
+
+//             <h1>C<sub>60</sub> - Fullerene</h1>
+//         </header>
+//     )
+
 // }
-
-// function handleBack() 
-// {
-//     setCount((prevCount) => prevCount - 1)
-// }
-
-// console.log(count);
-// <main className='lesson1--main'>
-
-
-{/* <button onClick={handleBack}>Back</button> */}
-
-// </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <div className='lesson1--wrapper'>
-    <div className='lesson1--main'>
-        <Text sectionState={sectionState} />
-    </div> */}
-
-

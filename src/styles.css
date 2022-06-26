@@ -2,7 +2,6 @@
 * {
   box-sizing: border-box;
 }
-
 html,
 body,
 #root {
@@ -33,82 +32,11 @@ svg {
   fill: #ddd;
 }
 
-/* .btn {
-  font-size: 1.1rem;
-  font-weight: bold;
-  position: absolute;
-  top: 80%;
-  left: 600px;
-  z-index: 2;
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-}
-
-.btn:hover .btn-slide-show-text1 {
-  margin-left: 65px;
-}
-
-.fill-center {
-  left: 44%;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 8px;
-  height: 50px;
-  width: 180px;
-  padding: 0px;
-  outline: none;
-  overflow: hidden;
-  transition: color 0.3s ease-out 0.1s;
-  background: transparent;
-}
-
-.fill-center::before {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  margin: auto;
-  text-align: center;
-  content: "";
-  border-radius: 50%;
-  display: block;
-  width: 20em;
-  height: 20em;
-  line-height: 20em;
-  left: -4.7em;
-  transition: box-shadow 0.25s ease-out 0s;
-  z-index: -1;
-}
-
-.fill-center:hover {
-  color: rgb(255, 255, 255);
-  background: transparent;
-}
-
-.fill-center--blue {
-  border: 2px solid rgb(61, 135, 255);
-  color: rgb(61, 135, 255);
-}
-
-.fill-center--blue:hover::before {
-  box-shadow: black 0px 0px 0px 11em inset;
-} */
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 /* HERO OVERLAY */
-
 .hero--wrapper {
   position: absolute; 
   top: 0 ;
@@ -119,7 +47,6 @@ svg {
   display: flex;
   justify-content: center;
 }
-
 .hero {
   position: relative;
   top: 55%;
@@ -131,7 +58,6 @@ svg {
   align-items: center;
   /* border: 1px solid red; */
 }
-
 .hero--title {
   margin: 0;
   padding: 0;
@@ -144,7 +70,6 @@ svg {
   position: relative;
 
 }
-
 .hero--subtitle {
   width: 90%;
   line-height: 40px;
@@ -153,8 +78,6 @@ svg {
   color: white !important;
   font-size: 1.7em;
 }
-
-
 .hero--txt--html {
   background: linear-gradient(to right, #3272F4 0%, #CC2DD7 85%);
   -webkit-background-clip: text;
@@ -163,8 +86,7 @@ svg {
   font-weight: 500;
   letter-spacing: -0.05em;
 }
-
-.btn {
+.heroBtn {
   font-size: 1.1rem;
   font-weight: bold;
   position: absolute;
@@ -181,7 +103,7 @@ svg {
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
-.btn > div {
+.heroBtn > div {
   position: relative;
   width: 180px;
   height: 55px;
@@ -190,7 +112,7 @@ svg {
   -moz-perspective: 1000px;
   perspective: 1000px;
 }
-.btn > div > a {
+.heroBtn > div > a {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -210,7 +132,7 @@ svg {
   -moz-transition: -moz-transform 0.25s;
   transition: transform 0.25s;
 }
-.btn > div > a::before, .btn > div > a::after {
+.heroBtn > div > a::before, .heroBtn > div > a::after {
   background-color: #000;
   justify-content: center;
   align-items: center;
@@ -231,7 +153,7 @@ svg {
   display: flex;
   border-radius: 2px;
 }
-.btn > div > a::before {
+.heroBtn > div > a::before {
   border: 2px solid rgb(61, 135, 255);
   color: rgb(61, 135, 255);
 
@@ -241,8 +163,7 @@ svg {
   -o-transform: rotateY(0deg) translateZ(25px);
   transform: rotateY(0deg) translateZ(25px);
 }
-
-.btn > div > a::after {
+.heroBtn > div > a::after {
   color: #CC2DD7;
   border: 2px solid #CC2DD7;
   -webkit-transform: rotateX(90deg) translateZ(25px);
@@ -251,7 +172,7 @@ svg {
   -o-transform: rotateX(90deg) translateZ(25px);
   transform: rotateX(90deg) translateZ(25px);
 }
-.btn > div > a:hover {
+.heroBtn > div > a:hover {
   -webkit-transform: translateZ(-25px) rotateX(-90deg);
   -moz-transform: translateZ(-25px) rotateX(-90deg);
   -ms-transform: translateZ(-25px) rotateX(-90deg);
@@ -259,44 +180,12 @@ svg {
   transform: translateZ(-25px) rotateX(-90deg);
   cursor: pointer; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .lessonSelection--container {
-  /* position: absolute;  */
-  /* top: 20%;
-  left: 50%; */
   width: 300px;
   height: 450px;
   border-radius: 10px;
-  /* backdrop-filter: blur(1.5px); */
-  /* background-color: rgba(1, 117, 254, 0.5); */
   border: 1px solid ;
   box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.55);
-}
-
-@keyframes lessonSelection--animation {
-  from {
-    transform: translateX(-35em);
-  }
-  to {
-    transform: translateX(0em);
-  }
 }
 .annotation {
   cursor: pointer;
@@ -305,7 +194,6 @@ svg {
   width: 55px;
   font-size: 4px;
   font-weight: 700;
-  /* background: #3272F4; */
   border: .1px solid #3272F4;;
   background: black;
   color: #3272F4;
@@ -315,15 +203,13 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background: #3272F4; */
   /* gap: 5px; */
 }
-
-
-.lessonSelection-wrapper {
+.lessonSelection--wrapper {
   position: absolute;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 100%;
   height: 100%;
@@ -331,12 +217,11 @@ svg {
   top: 0;
   left: 0;
   padding: 100px;
-}
 
+  animation: fadeIn 1.5s ease-in 1 both; 
+  /* justify-content: center; */
+}
 .lessonSelection--title {
-  /* position: relative; */
-  /* -webkit-text-stroke:1px white;
-  -webkit-text-fill-color: black; */
   margin: 0;
   padding: 0;
   font-size: 4.5em;
@@ -346,17 +231,16 @@ svg {
   height: 100px; 
   overflow: hidden;
   display: block;
+  /* -webkit-text-stroke:1px white;
+  -webkit-text-fill-color: black; */
 }
-
-.card--wrapper
-{
+.card--wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-
 .frame {
   width: 300px;
   height: 450px;
@@ -366,7 +250,6 @@ svg {
 .frame:hover {
   transform: scale3d(1.25, 1.25, 1.25);
 }
-
 .card {
   width: 100%;
   height: 100%;
@@ -381,22 +264,38 @@ svg {
   transition-property: transform, box-shadow;
   transition-timing-function: ease-out;
   border: 1px solid white;
+  padding: 10px;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
 }
 
-.light {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 9px;
+.card > h1 {
+  /* width: 100%;  */
+  /* height: 20%;  */
+  font-weight: 500;
+  letter-spacing: 4px;
+
+  /* border: 1px solid blue;  */
 }
 
-/*# sourceMappingURL=styles.css.map */
+.card > img {
+  width: 100%; 
+  height: auto;
+  /* border: 1px solid blue;  */
+}
 
+.card > h3 {
+  font-weight: 300;
+  font-size: 1rem;
+
+  /* border: 1px solid blue;  */
+}
 
 
 
 /* LESSON 1 */
-
 .lesson1--wrapper 
 {
   position: absolute; 
@@ -409,7 +308,6 @@ svg {
   padding: 12.5px;
   /* border: solid 1px white; */
 }
-
 .lesson1--header 
 {
   position: absolute;
@@ -422,7 +320,6 @@ svg {
 
   /* border: solid 1px red; */
 }
-
 .lesson1--header > img 
 {
   position: relative; 
@@ -432,12 +329,10 @@ svg {
   cursor: pointer;
   /* margin-right: 50%; */
 }
-
 .lesson1--header > img:hover 
 {
   box-shadow: 0 0 10px 5px #f07167;
 }
-
 .lesson1--header > h1
 {
   font-family: Quicksand-bold;
@@ -449,43 +344,70 @@ svg {
   margin-top: 1%;
   /* width: 50% */
 }
-
-.lesson1--main
+.lesson1--text--wrapper 
 {
+  position: absolute;
+  top: 10%;
+  left: 0;
   width: 100%;
   height: 80%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  /* border: 1px solid blue; */
-  /* z-index: 2; */
-}
+  z-index: 2;
 
-.lesson1--text 
+  /* border: 1px solid red; */
+}
+.lesson1--text--wrapper > p 
+{
+  width: 90%;
+  font-size: 1.66rem;
+  text-align: center;
+  line-height: 45px;
+  animation: fadeIn 2s 1 ease-in-out;
+
+  /* border: 1px solid blue; */
+}
+.lesson1--text--wrapper2
 {
   position: absolute;
-  z-index: 3;
-  top: 37%; 
+  top: 10%;
   left: 8%;
-  width: 40%;
-  line-height: 50px;
+  width: 49%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+
+  /* border: 1px solid red; */
+}
+.lesson1--text--wrapper2 > p 
+{
+  width: 100%;
+  font-size: 1.66rem;
+  text-align: left;
+  line-height: 45px;
+  animation: fadeIn 2s 1 ease-in-out;
+
+  /* border: 1px solid blue; */
 }
 
-
-
-
-
-
-
-.lesson1--text > p 
+.lesson1--section5--text 
 {
-  font-size: 1.33rem;
+  width: 88% !important;
+  font-size: 1.4rem !important;
   text-align: left;
-  line-height: 40px;
+  line-height: 45px;
   animation: fadeIn 2s 1 ease-in-out;
-  margin-bottom: 5%;
+}
+
+span 
+{
+  color: #f07167;
+  font-family: Quicksand-bold;
 }
 
 .lesson1--text2
@@ -494,11 +416,10 @@ svg {
   text-align: center;
   width: 60%;
   line-height: 50px;
+  margin: 0 !important;
 
-  animation: fadeIn 3.25s 1 ease-in-out;
+  animation: fadeIn 3.5s 1 ease-in-out;
 }
-
-
 .lesson1--text3
 {
 
@@ -508,7 +429,6 @@ svg {
   /* margin-top: 45%; */
   /* animation: fadeIn 3.25s 1 ease-in-out;  */
 }
-
 .lesson1--bottomNav{
   width: 100%;
   height: 10%;
@@ -520,7 +440,6 @@ svg {
   /* border: 1px solid red; */
   padding: 0px 120px 30px 120px;
 }
-
 .lesson1--bottomNav > button 
 {
   width: 3rem;
@@ -530,49 +449,16 @@ svg {
   /* background: transparent; */
   border: 1px solid white;
 }
-
-
 .lesson1--bottomNav > button:hover
 {
   animation: growGlow .2s ease-in-out;
   animation-fill-mode: forwards;
-  /* box-shadow: 0 0 10px 10px white; */
 }
-
-@keyframes growGlow {
-  from {
-    box-shadow: 0 0 0px 0px white;
-    transform: scale(1);
-  }
-  to {
-    box-shadow: 0 0 10px 4px white;
-    transform: scale(1.2);
-  }
-}
-
 .fadeOut {
   animation: fadeOut 2s 1 ease-in-out
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
 
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
 
 
 
@@ -580,13 +466,14 @@ svg {
 .lesson1--footer 
 {
   position: absolute;
-  top: 90%;
+  top: 88%;
   left: 0;
   width: 100%;
   height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
+
   /* border: 2px solid red; */
 }
 
@@ -595,28 +482,15 @@ svg {
   color: white;
 }
 
+
+/* NOT BEING USED?  */
 .animation
 {
     animation: paragraphAnimation .01s ease-out 1 both; 
-    /* animation-delay: .5s; */
-}
-
-@keyframes paragraphAnimation
-{
-    from
-    {
-        opacity: 0;
-        transform: perspective(500px) translate3d(0, 150px, 0)
-    }
-    to
-    {
-        opacity: 1;
-        transform: perspective(500px) translate3d(0, 0, 0);
-    }
 }
 
 
-.btn2 {
+.startLesson1Btn {
   font-size: 1.1rem;
   font-weight: bold;
   /* position: absolute; */
@@ -633,7 +507,7 @@ svg {
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
-.btn2 > div {
+.startLesson1Btn > div {
   position: relative;
   width: 180px;
   height: 55px;
@@ -642,7 +516,7 @@ svg {
   -moz-perspective: 1000px;
   perspective: 1000px;
 }
-.btn2 > div > a {
+.startLesson1Btn > div > a {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -662,7 +536,7 @@ svg {
   -moz-transition: -moz-transform 0.25s;
   transition: transform 0.25s;
 }
-.btn2 > div > a::before, .btn2 > div > a::after {
+.startLesson1Btn > div > a::before, .startLesson1Btn > div > a::after {
   justify-content: center;
   align-items: center;
   margin: 0;
@@ -681,7 +555,7 @@ svg {
   display: flex;
   border-radius: 2px;
 }
-.btn2 > div > a::before {
+.startLesson1Btn > div > a::before {
   border: 2px solid rgb(255, 255, 255);
   background-color: #000;
   color: 2px solid rgb(255, 255, 255);
@@ -692,7 +566,7 @@ svg {
   -o-transform: rotateY(0deg) translateZ(25px);
   transform: rotateY(0deg) translateZ(25px);
 }
-.btn2 > div > a::after {
+.startLesson1Btn > div > a::after {
   background-color: black;
   border: 2px solid #f07167;
   color: #f07167;
@@ -702,7 +576,7 @@ svg {
   -o-transform: rotateX(90deg) translateZ(25px);
   transform: rotateX(90deg) translateZ(25px);
 }
-.btn2 > div > a:hover {
+.startLesson1Btn > div > a:hover {
   -webkit-transform: translateZ(-25px) rotateX(-90deg);
   -moz-transform: translateZ(-25px) rotateX(-90deg);
   -ms-transform: translateZ(-25px) rotateX(-90deg);
@@ -763,7 +637,7 @@ svg {
 }
   
 .homeBtn--icon:hover::before {  
-  transform: scale(3.5);
+  transform: scale(.8);
 }
 
 /* .homeBtn--icon:hover::after {  
@@ -774,7 +648,6 @@ svg {
   animation: homeColorAn 5s ease-out 10 both; 
 
 }
-
 
 .backBtn--wrapper {
   position: absolute;
@@ -809,7 +682,6 @@ svg {
   z-index: 20;  
   transform: scale(.4);
 }
- 
 
 .backBtn--icon::before {  
   content: '';
@@ -851,10 +723,47 @@ svg {
   /* border: 1px solid rgba(61, 135, 255);  */
 }
 
+@keyframes growGlow {
+  from {
+    box-shadow: 0 0 0px 0px white;
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 10px 4px white;
+    transform: scale(1.2);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
 
-@keyframes homeColorAn
-{
+  to {
+    opacity: 0;
+  }
+}
+@keyframes paragraphAnimation {
+    from
+    {
+        opacity: 0;
+        transform: perspective(500px) translate3d(0, 150px, 0)
+    }
+    to
+    {
+        opacity: 1;
+        transform: perspective(500px) translate3d(0, 0, 0);
+    }
+}
+@keyframes homeColorAn {
   0%
   {
     background-color: #3272F4;
@@ -870,6 +779,21 @@ svg {
     background-color: #3272F4;
   }
 }
+@keyframes lessonSelection--animation {
+  from {
+    transform: translateX(-35em);
+  }
+  to {
+    transform: translateX(0em);
+  }
+}
 
 
 
+
+.card--img{
+  /* height: 50% !important;  */
+  /* width: 100%; */
+
+  /* border: 1px solid red; */
+}
