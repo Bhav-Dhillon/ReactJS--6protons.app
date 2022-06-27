@@ -1,6 +1,6 @@
 import { useState, Suspense, useRef, useEffect} from 'react'
 import { Canvas, useFrame, } from '@react-three/fiber'
-import { useGLTF, Html } from '@react-three/drei'
+import { useGLTF, Html, OrbitControls } from '@react-three/drei'
 import Stars from './Stars'
 import * as THREE from 'three'
 import fullerenesImg2 from '../images/fullerenes2.jpeg'
@@ -42,6 +42,8 @@ export default function HomePage(props)
                 <ambientLight intensity={.4} />
                 <TestosteroneModel flipped={flipped}/>
                 <Stars />
+                { props.cameraRotate ? <spotLight position={[10, 10, -10] } intensity={1}/> : null}
+                { props.cameraRotate ? <BuckyballModel /> : null}
             </Suspense>
         </Canvas>
     </>
@@ -80,6 +82,25 @@ function TestosteroneModel(props) {
         </group>
     </group>
     )
+}
+
+function BuckyballModel() {
+  const ref = useRef()
+  const { nodes, materials } = useGLTF('/buckyball-transformed.glb')
+
+  useFrame((state) => {
+    ref.current.rotation.y += .004
+    // ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, props.flipped ? (Math.PI * 1.5) : Math.PI / 2 , 0.1)
+  })
+  return (
+    <group ref={ref} dispose={null} position={[.76, -.05, 2]}>
+      <group scale={0.03}>
+        <mesh geometry={nodes['carbon-atoms'].geometry} material={materials['Material.001']} position={[1.02, 3.01, 1.45]} scale={0.23} />
+        <mesh geometry={nodes['carbon-bonds'].geometry} material={materials['Material.001']} position={[2.9, 1.01, -1.53]} rotation={[-0.42, 1.23, -2.44]} />
+        <mesh geometry={nodes['soccer-pattern'].geometry} material={materials['Material.001']} position={[0.18, 1.66, 3.07]} scale={0.23} />
+      </group>
+    </group>
+  )
 }
 
 function HeroOverlay() {
@@ -145,7 +166,7 @@ function LessonSelectionOverlay(props) {
       <div className='lessonSelection--wrapper'>
         <h1 className='lessonSelection--title'>Please select a lesson.</h1>
         <div className='card--wrapper'>
-          <Card id={1} setPage={props.setPage} title={"Fullerenes"} img={fullerenesImg2} description={"Placeholder for Fullerenes description. Lorem impsum, jbust random filler text here. And a little more."}/>
+          <Card id={1} setPage={props.setPage} title={"Fullerenes"} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."} />
           <Card id={2} setPage={props.setPage} title={"Diamonds"} img={diamondsImg12} description={"Placeholder for Diamonds description. Lorem impsum, just random filler text here. And a little more."}/>
           <Card id={3} setPage={props.setPage} title={"Nanotubes"} img={nanotubesImg} description={"Placeholder for Nanotubes description. Lorem impsum, just random filler text here. And a little more."}/>
         </div>
